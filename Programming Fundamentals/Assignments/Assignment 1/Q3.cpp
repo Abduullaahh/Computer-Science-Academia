@@ -1,7 +1,3 @@
-//Abdullah Tahir
-//Roll : 21l-5419 , Section : 1J
-//PF Assignment # 1 , Question # 3
-
 #include<iostream>
 using namespace std;
 
