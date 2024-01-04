@@ -1,0 +1,178 @@
+#include<iostream>
+using namespace std;
+class garment 
+{
+	string name;
+
+public:
+	garment(string Name = " ") 
+	{
+		name = Name;
+	}
+	string getname()
+	{
+		return name;
+	}
+	virtual void calculateprice() = 0;
+};
+class lower :virtual public garment 
+{
+public:
+	int waist;
+	lower()
+	{
+		waist = 0;
+	}
+	virtual int getwaist() = 0;
+};
+class upper :virtual public garment 
+{
+public:
+	int collarsize;
+	upper()
+	{
+		collarsize = 0;
+	}
+	virtual int getcollarsize() = 0;
+};
+class trouser :virtual public lower 
+{
+public:
+	trouser(int waistsiz)
+	{
+		waist = waistsiz;
+		waist = waist - 3;
+	}
+	int getwaist() 
+	{
+		return waist;
+	}
+	void calculateprice() 
+	{
+		cout << "Price of trouser = ";
+		cout << waist * 20 + 100 << endl;
+	}
+};
+class pajama :virtual public lower
+{
+public:
+	pajama(int waistsiz)
+	{
+		waist = waistsiz;
+		waist = waist - 2;
+	}
+	int getwaist() 
+	{
+		return waist;
+	}
+	void calculateprice() 
+	{
+		cout << "Price of pajama = ";
+		cout << waist * 15 + 50 << endl;
+	}
+};
+class shirt :public upper 
+{
+public:
+	shirt(int collar)
+	{
+		collarsize = collar;
+		collarsize = collarsize - 1;
+	}
+	int getcollarsize() 
+	{
+		return collarsize;
+	}
+	void calculateprice() 
+	{
+		cout << "Price of shirt = ";
+		cout << collarsize * 20 + 10 << endl;
+	}
+};
+garment** deleteitem(garment** shoppingcart, int& size, int index)
+{
+	garment** temp = new garment * [size - 1];
+	int a = 0;
+	for (int i = 0; i < index - 1; i++) 
+	{
+		temp[a] = shoppingcart[i];
+		a++;
+	}
+	for (int i = index; i < size; i++) 
+	{
+		temp[a] = shoppingcart[i];
+		a++;
+	}
+	size = size - 1;
+	return temp;
+
+}
+int main() 
+{
+	int size = 0;
+	int totalsize = 10;
+	int choice = -1;
+	garment** shoppingcart = new garment * [10];
+	int Collar = 0;
+	int Waist = 0;
+	do {
+		cout << "Shopping Cart>>>>" << endl;
+		cout << "1- Shirt" << endl;
+		cout << "2- Trousers" << endl;
+		cout << "3- Pajama" << endl;
+		cout << "4- Total items in Cart" << endl;
+		cout << "5- Remove Item" << endl;
+		cout << "6- Bill" << endl;
+		cout << "7- Press 0 to exit" << endl;
+		cout << "Enter choice: "; cin >> choice;
+		if (choice == 1) 
+		{
+			cout << "Enter collarsize : ";
+			cin >> Collar;
+			shoppingcart[size] = new shirt(Collar);
+			size++;
+		}
+		else if (choice == 2) 
+		{
+			cout << "Enter Waist : ";
+			cin >> Waist;
+			shoppingcart[size] = new trouser(Waist);
+			size++;
+		}
+		else if (choice == 3) 
+		{
+			cout << "Enter Waist : ";
+			cin >> Waist;
+			shoppingcart[size] = new pajama(Waist);
+			size++;
+		}
+		else if (choice == 4) 
+		{
+			cout << "Total Items In list : " << size << endl;
+		}
+		else if (choice == 5)
+		{
+			int no = 1;
+			int deleteindex = 0;
+			for (int i = 0; i < size; i++) 
+			{
+				cout << no << "- "; shoppingcart[i]->calculateprice();
+				no++;
+			}
+			cout << "Enter which item you want to delete: ";
+			cin >> deleteindex;
+			shoppingcart = deleteitem(shoppingcart, size, deleteindex);
+			cout << "Successfull deleted" << endl;
+
+		}
+		else if (choice == 6) 
+		{
+			system("cls");
+			cout << "Bill " << endl << endl;
+			for (int i = 0; i < size; i++)
+			{
+				shoppingcart[i]->calculateprice();
+			}
+		}
+	} while (choice != 0);
+}

@@ -1,0 +1,46 @@
+
+#include <iostream>
+
+using namespace std;
+class fraction
+{
+private:
+    int num;
+    int deno;
+public:
+    fraction();
+    fraction(int n, int d);
+    ~fraction();
+    void print();
+};
+
+fraction::fraction()
+{
+    num=0;
+    deno=1;
+}
+fraction::fraction(int n, int d)
+{
+    num =n;
+    deno =d;
+}
+fraction::~fraction()
+{
+    cout<<"Destructors are called For "<<num<<"/"<<deno<<endl;
+}
+void fraction::print()
+{
+     cout<<num<<"/"<<deno<<endl;
+}
+int main()
+{
+    fraction f1;
+    cout<<"Fraction f1 = ";
+    f1.print();
+    
+    fraction f2(1,3);
+    cout<<"Fraction f2 = ";
+    f2.print();
+    
+    return 0;
+}
