@@ -1,10 +1,3 @@
-//-------------------------------------------
-// Name : Abdullah Tahir
-// Email : l215419@lhr.nu.edu.pk
-// Roll no : 21L-5419
-// Section : J
-// PF - Assignment # 3
-//-------------------------------------------
 # include<iostream>
 using namespace std;
 //-------------------------------------------
