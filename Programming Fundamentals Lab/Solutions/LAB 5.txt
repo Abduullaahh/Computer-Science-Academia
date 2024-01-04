@@ -1,0 +1,183 @@
+   ///   LAB # 5   ///
+
+
+
+
+QUESTION#1
+
+//A to Z Alphabets
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	char a;
+	a = 'A';
+	while (int(a) <= 89)
+	{
+		cout << a << ",";
+		a++;
+		if (int(a == 90))
+		{
+			cout << a << "." << endl;
+		}
+	}
+	system("pause");
+	return 0;
+}
+
+QUESTION#2
+
+//Factorial of number
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int num, i, fac;
+	i = 1;
+	fac = 1;
+	cout << "Enter a number : ";
+	cin >> num;
+	while (i <= num)
+	{
+		fac = fac*i;
+		i++;
+	}
+	cout << "Factorial of  " << num << "  is = " << fac << endl;
+	system("pause");
+	return 0;
+}
+
+QUESTION#3
+
+//Table of number
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int num, i, pro;
+	i = 1;
+	cout << "Enter a n number : ";
+	cin >> num;
+	while (i <= 10)
+	{
+		pro = i*num;
+		cout << "Table of " << num << endl; 
+		cout << num << " * " << i << " = " << pro << endl;
+		i++;
+	}
+	system("pause");
+	return 0;
+}
+
+QUESTION#4
+
+//Print Odd numbers
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int i, rem;
+	i = 1;
+	while (i <= 100)
+	{
+		rem = i % 2;
+		if (rem == 1)
+		{
+			if (i % 7 == 0)
+			{
+				cout << "";
+			}
+			else
+			{
+				cout << i << "," << endl;
+			}
+		}
+		i++;
+	}
+	system("pause");
+	return 0;
+}
+
+QUESTION#5
+
+//Sum of series
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int i, num, n, pro, sum;
+	i = 1;
+	sum = 0;
+	cout << "Enter a number : ";
+	cin >> num;
+	cout << "Enter value of n : ";
+	cin >> n;
+	while (i <= n)
+	{
+		pro = pow(num, i);
+		sum = sum + pro;
+		i++;
+	}
+	cout << "Sum of series : " << sum << endl;
+	system("pause");
+	return 0;
+}
+
+QUESTION#6
+
+//Fahrenheit and Celsius
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	float F, C;
+	F = 50;
+	cout << "Fahrenheit             Celsius" << endl;
+	while (F <= 100)
+	{
+		C =  (0.5556)* (F - 32);
+		cout << "    " << F << "                    " << C << endl;
+		F = F + 5;
+	}
+	system("pause");
+	return 0;
+}
+
+QUESTION#7
+
+//Pattern
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int i = 1;
+	while (i <= 4)
+	{
+		if(i==1)
+		{
+			cout << "4	4	4	4" << endl;
+		}
+		else if (i == 2)
+		{
+			cout << "3	3	3" << endl;
+		}
+		else if (i == 3)
+		{
+			cout << "2	2" << endl;
+		}
+		else if (i == 4)
+		{
+			cout << "1" << endl;
+		}
+		i++;
+	}
+	system("pause");
+	return 0;
+}

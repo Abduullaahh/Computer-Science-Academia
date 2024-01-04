@@ -1,0 +1,232 @@
+PROBLEM:1
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	char s;
+	do
+	{
+		cout<<"ENTER THE STATE OF YOUR PHONE : ";
+		cin>>s;
+	}while(s!='w' && s!='d');
+		if(s=='w')
+		{
+			cout<<"Noted,your phone is in working state"<<endl;
+		}
+		else
+		{
+			cout<<"Noted,your phone is in dead state"<<endl;
+		}
+		system("pause");
+		return 0;
+}
+
+
+PROBLEM :2
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int i=1,s=0;
+	do
+	{
+		s=s+1;
+		cout<<s<<endl;
+	}while(i=1);
+		system("pause");
+		return 0;
+}
+
+PROBLEM :5
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int i=1,so=0,n,se=0,j=2;
+	cout<<"ENTER THE NUMBER : ";
+	cin>>n;
+	do
+	{
+		so=so+i;
+		i=i+2;
+	}while(i<=n);
+	do
+	{
+		se=se+j;
+		j=j+2;
+	}while(j<=n);
+	cout<<"SUM of ODD numbers is "<<so<<endl;
+	cout<<"SUM of EVEN numbers is "<<se<<endl;
+		system("pause");
+		return 0;
+}
+
+PROBLEM :6
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a,b,n=1,sa=0,sb=0;
+	cout<<"ENTER THE 1st NUMBER : ";
+	cin>>a;
+	cout<<"ENTER THE 2nd NUMBER : ";
+	cin>>b;
+	do
+	{
+		if(a%n==0)
+		{
+			sa=sa+n;
+		}
+		n++;
+	}while(n<a);
+	n=1;
+	do
+	{
+		if(b%n==0)
+		{
+			sb=sb+n;
+		}
+		n++;
+	}while(n<b);
+	if(sa==b && sb==a)
+	{
+		cout<<"THE TWO NUMBERS ARE AMICIABLE";
+	}
+ 
+		system("pause");
+		return 0;
+}
+
+
+PROBLEM 7
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	char a,b,i;
+	i=0;
+	do
+	{
+	cout<<"Player 1 : ";
+	cin>>a;
+	cout<<"player 2 : ";
+	cin>>b;
+		if(a=='R' && b=='R')
+		{
+			cout<<"DRAW"<<endl;
+		}
+		if(a=='R' && b=='P')
+		{
+			cout<<"player 2 wins"<<endl;
+		}
+		if(a=='R' && b=='S')
+		{
+			cout<<"player 1 wins"<<endl;
+		}
+		if(a=='P' && b=='R')
+		{
+			cout<<"player 1 wins"<<endl;
+		}
+		if(a=='P' && b=='P')
+		{
+			cout<<"DRAW"<<endl;
+		}
+		if(a=='P' && b=='S')
+		{
+			cout<<"player 2 wins"<<endl;
+		}
+		if(a=='S' && b=='R')
+		{
+			cout<<"player 2 wins"<<endl;
+		}
+		if(a=='S' && b=='P')
+		{
+			cout<<"player 1 wins"<<endl;
+		}
+		if(a=='S' && b=='S')
+		{
+			cout<<"DRAW"<<endl;
+		}
+		cout<<"PRESS Q to quit";
+		cin>>i;
+	}while(i!='Q');
+ 
+		system("pause");
+		return 0;
+}
+
+
+PROBLEM 8 :
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n,r,c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,c7=0,c8=0,c9=0,c0=0;
+	cout<<"ENTER THE NUMBER : ";
+	cin>>n;
+	do
+	{
+		r=n%10;
+		if(r==1)
+		{
+			c1=c1+1;
+		}
+		else if(r==2)
+		{
+			c2=c2+1;
+		}
+		else if(r==3)
+		{
+			c3=c3+1;
+		}
+		else if(r==4)
+		{
+			c4=c4+1;
+		}
+		else if(r==5)
+		{
+			c5=c5+1;
+		}
+		else if(r==6)
+		{
+			c6=c6+1;
+		}
+		else if(r==7)
+		{
+			c7=c7+1;
+		}
+		else if(r==8)
+		{
+			c8=c8+1;
+		}
+		else if(r==9)
+		{
+			c9=c9+1;
+		}
+		else if(r==0)
+		{
+			c0=c0+1;
+		}
+		n=n/10;
+	}
+	while(n!=0);
+	cout<<"frequency of 1 : "<<c1<<endl;
+	cout<<"frequency of 2 : "<<c2<<endl;
+	cout<<"frequency of 3 : "<<c3<<endl;
+	cout<<"frequency of 4 : "<<c4<<endl;
+	cout<<"frequency of 5 : "<<c5<<endl;
+	cout<<"frequency of 6 : "<<c6<<endl;
+	cout<<"frequency of 7 : "<<c7<<endl;
+	cout<<"frequency of 8 : "<<c8<<endl;
+	cout<<"frequency of 9 : "<<c9<<endl;
+	cout<<"frequency of 0 : "<<c0<<endl;
+		system("pause");
+		return 0;
+}

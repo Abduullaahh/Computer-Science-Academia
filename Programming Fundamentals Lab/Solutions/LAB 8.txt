@@ -1,0 +1,208 @@
+           ///      LAB # 8   ///
+
+
+
+
+QUESTION # 1
+
+Write a program to find greatest common divisor (GCD) or highest common factor (HCF) of given two numbers.
+
+Solution :
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n1, n2, hcf = 0;
+	cout << "Enter first number : ";
+	cin >> n1;
+	cout << "Enter second number : ";
+	cin >> n2;
+	for ( int i = 1; i < (n1 + n2); i++ )
+	{
+		if ( n1 % i == 0 && n2 % i == 0)
+		{
+			hcf = i;
+		}
+	}
+	cout << " HCF is : " << hcf << endl;
+	system("pause");
+	return 0;
+}
+
+QUESTION # 2
+
+Write a program to print the factorial of a number by defining a function
+named Factorial&#39;.
+Factorial of any number n is represented by n! and is equal to 1*2*3*....*(n-1)*n.
+
+Solution : 
+
+#include<iostream>
+using namespace std;
+int factorial ( int &n );
+int main()
+{
+	int n;
+	cout << "Enter a number : ";
+	cin >> n;
+	factorial( n );
+	return 0;
+}
+int factorial ( int &n )
+{
+	int i = 1, pro = 1;
+	while( i <= n )
+	{
+		pro = i*pro;
+		i++;
+	}
+	cout << "Factorial of number is : " << pro << endl;
+	system ("pause");
+	return pro;
+}
+
+QUESTION # 3
+
+Write a function that counts and display the number of digits present in an
+integer number entered by user.
+
+Solution :
+
+#include<iostream>
+using namespace std;
+int digits( int &n );
+int main()
+{
+	int n;
+	cout << "Enter a number : ";
+	cin >> n;
+	digits ( n );
+	return 0;
+}
+int digits( int &n )
+{
+	int count = 0;
+	while ( n > 0)
+	{
+		n = n / 10;
+		count ++ ;
+	}
+	cout << count << endl ;
+	system ("pause");
+	return n;
+}
+
+QUESTION # 4
+
+Write a function that takes a number entered by user and tell if the sum of
+first half of the number equals the sum of second half of the same number.
+
+Solution :
+
+#include <iostream>
+using namespace std;
+int digits(int a)
+{ int count = 0;
+	while(a > 0)
+	{
+	count = count + 1;
+	a = a/10 ;
+	}
+	return count;
+}
+ void same(int halfdig1, int halfdig2, int num)
+
+ {
+
+	 int sumhalf1 = 0, sumhalf2 = 0;
+	 for ( int i = 1; i <= halfdig2 ; i = i + 1)
+	{
+		sumhalf2 = sumhalf2 + (num % 10);
+		num = num/ 10;
+	}
+	for ( int i = 1; i <= halfdig1 ; i = i + 1)
+	{
+		sumhalf1 = sumhalf1 + (num % 10) ;
+		num = num/ 10;
+	}
+	if (sumhalf1 == sumhalf2)
+	{ cout << " Sum of the first half equals sum of second half \n"<<"True\n";}
+	else
+	{ cout << " Sum of the first half is not equal to sum of the second half\n"<< "False\n";}
+ }
+int main()
+{
+	int num, digcount, halfdig1, halfdig2;
+	cout << "enter a number : ";
+	cin>> num;
+	digcount = digits(num);
+	halfdig2 = digcount / 2;
+	halfdig1 = digcount - halfdig2;
+	same(halfdig1 , halfdig2, num);
+	system("pause");
+return 0;
+}
+
+QUESTION # 5
+
+Solution :
+
+#include <iostream>
+using namespace std;
+
+int digits(int a)
+{
+	int digcount = 0;
+	while (a > 0)
+	{
+		digcount = digcount + 1;
+		a = a / 10;
+	}
+
+	return digcount;
+}
+
+void bothdiv(int halfdig1, int halfdig2, int num, int digits)
+{
+	int half1, half2;
+	int a = 1;
+	int b = 1;
+	for (int i = 1; i <= halfdig2; i = i + 1)
+	{
+		a = a * 10;
+	}
+	half2 = num % a;
+	num = num / a;
+	for (int i = 1; i <= halfdig1; i = i + 1)
+	{
+		b = b * 10;
+	}
+	half1 = num % b;
+
+	if ((half1 % 11) == 0)
+	{
+		if ((half2 % 11) == 0)
+		{
+			cout << " Both halves are divisible by 11 : True \n";
+		}
+		else { cout << " Both halves are not divisible by 11 : True \n"; }
+	}
+	else { cout << "Both halves are not divisible by 11 : False \n"; }
+}
+
+int main()
+{
+	int num, digcount, halfdig1, halfdig2;
+	cout << "enter a number";
+	cin >> num;
+	digcount = digits(num);
+
+	halfdig2 = digcount / 2;
+	halfdig1 = digcount - halfdig2;
+
+	bothdiv(halfdig1, halfdig2, num, digcount);
+
+	system("pause");
+	return 0;
+}

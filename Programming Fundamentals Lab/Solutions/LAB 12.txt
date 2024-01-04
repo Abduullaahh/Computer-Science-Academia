@@ -1,0 +1,264 @@
+QUESTION # 1
+
+#include<iostream>
+using namespace std;
+int sum = 0;
+int ro, col;
+double aver = 0;
+
+#include<iostream>
+using namespace std;
+int sum = 0;
+int ro, col;
+double aver = 0;
+
+int total(int arr[][5])
+{
+
+	for (int i = 0; i < ro; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			sum = sum + arr[i][j];
+		}
+	}
+	cout << "Sum of all the enteries :" << sum << endl;
+	return sum;
+
+}
+double average(int arr[][5])
+{
+	sum = 0;
+	for (int i = 0; i < ro; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			sum = sum + arr[i][j];
+		}
+	}
+	int elem;
+	elem = ro * col;
+	aver = sum / elem;
+	cout << "Average is :" << aver << endl;
+	return aver;
+
+}
+int leftdiagsum(int arr[][5])
+{
+	sum = 0;
+	for (int i = 0; i < ro; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if ((i + j) == col - 1)
+			{
+				sum = sum + arr[i][j];
+			}
+		}
+	}
+	cout << "Left diagonal sum :" << sum << endl;
+	return sum;
+}
+int rightdiagsum(int arr[][5]) {
+	sum = 0;
+	for (int i = 0; i < ro; i++) {
+		for (int j = 0; j < col; j++) {
+			if (i == j) {
+				sum = sum + arr[i][j];
+			}
+		}
+	}
+	cout << "Right diagonal sum :" << sum << endl;
+	return sum;
+}
+int lowestinrow(int arr[][5])
+{
+	int min = arr[0][0];
+	for (int i = 0; i < ro; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] <= min)
+			{
+				min = arr[i][j];
+			}
+
+		}
+	}
+	cout << "Minimum value :" << min << endl;
+	return min;
+}
+int highestinrow(int arr[][5])
+{
+	int max = arr[0][0];
+	for (int i = 0; i < ro; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] >= max)
+			{
+				max = arr[i][j];
+			}
+
+		}
+	}
+	cout << "Minimum value :" << max << endl;
+	return max;
+}
+int main()
+{
+	int a[5][5];
+	cout << "Enter no of rows" << endl;
+	cin >> ro;
+	cout << "Enter no of columns" << endl;
+	cin >> col;
+	cout << endl;
+	for (int i = 0; i < ro; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cin >> a[i][j];
+		}
+	}
+	cout << "Your input" << endl;
+	for (int i = 0; i < ro; i++) {
+		for (int j = 0; j < col; j++) {
+			cout << a[i][j] << " ";
+		}
+		cout << endl;
+	}
+	total(a);
+	average(a);
+	leftdiagsum(a);
+	rightdiagsum(a);
+	lowestinrow(a);
+	highestinrow(a);
+	system("pause");
+	return 0;
+}
+
+QUESTION # 2
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	char a[3][20];
+	int i, l, j, k, b = 20, n;
+	cout << "Enter the words\n";
+	for (int i = 0; i < 3; i++)
+		{
+			cin.getline(a[i], 20);
+		}
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 20; j >= 0; j--)
+		{
+			cout << a[i][j];
+		}
+		cout << endl;
+	}
+}
+
+QUESTION # 3
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main()
+{
+	char wordlist[10][20];
+	jump:
+	cout << "Enter words to save in dictionary\n\n";
+	for (int i = 0; i < 10; i++)
+	{
+		cin.getline(wordlist[i], 20);
+	}
+	fstream;
+	ofstream dictionary;
+	dictionary.open("Dictionary.txt");
+	if (dictionary)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			dictionary << wordlist[i] << endl;
+		}
+		cout << "Data stored :)\n";
+	}
+	else 
+	{
+		cout << "File not created :(";
+	}
+	dictionary.close();
+	ifstream dictionary1;
+	dictionary1.open("Dictionary.txt");
+	char spellchecker[10][20];
+	if (dictionary1)
+	{
+		for (int i = 0; !dictionary1.eof(); i++)
+		{
+			dictionary1.getline(spellchecker[i], 20);
+		}
+		cout << "Data read from file :)\n";
+	}
+	else
+	{
+		cout << "File not found :(";
+	}
+	char word[20];
+	cout << "Enter the word : ";
+	cin.getline(word, 20);
+	bool chk = false;
+	int chk1 = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; spellchecker[i][j] != '\0' || word[j] != '\0'; j++)
+		{
+			if (word[j] == spellchecker[i][j])
+			{
+				chk = true;
+				continue;
+				if (chk = false && chk1 <= 2)
+				{
+					word[j] = spellchecker[i][j];
+					break;
+				}
+			}
+			else
+			{
+				chk = false;
+				chk1++;
+				if (chk1 > 2)
+				{
+					break;
+				}
+			}
+		}
+	}
+	if (chk = true && chk1 == 0)
+	{
+		cout << "You Spelled Correctly :)\n";
+	}
+	else if (chk = false && chk1 <= 2)
+	{
+		cout << "Did you mean :|" << word;
+	}
+	else if (chk = false || chk1 > 2)
+	{
+		cout << "Word isn't spelled correctly :(\n";
+		cout << "Do you want to add the new word to dictionary\n";
+		char op;
+		cout << "Press y to Add the word  OR  Press any key to exit\n";
+		cin >> op;
+		if (op=='y'|| op == 'Y')
+		{
+			goto jump;
+		}
+		else
+		{
+			exit;
+		}
+	}
+	return 0;
+}

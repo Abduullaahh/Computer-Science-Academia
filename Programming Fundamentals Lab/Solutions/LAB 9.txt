@@ -1,0 +1,121 @@
+    ///    LAB # 9    ///
+
+
+
+
+
+QUESTION # 1
+
+#include <iostream>
+using namespace std;
+void FibonacciSeries(int& n)
+{
+	int t1 = 0, t2 = 1, nxt = 0;
+	cout << "Fibonacci Series: ";
+	for (int i = 1; i <= n; i++)
+	{
+		if (i == 1) 
+                {
+			cout << t1 << ", ";
+			continue;
+		}
+		if (i == 2) 
+                {
+			cout << t2 << ", ";
+			continue;
+		}
+		nxt = t1 + t2;
+		t1 = t2;
+		t2 = nxt;
+		cout << nxt << ", ";
+	}
+}
+int main()
+{
+	int n;
+	cout << "Enter the number of terms: ";
+	cin >> n;
+	FibonacciSeries(n);
+	return 0;
+}
+
+QUESTION # 2
+
+#include<iostream>
+using namespace std;
+void calculateGrade(int marks, char& grade);
+int main()
+{
+	int marks, op;
+	char grade;
+	for (int i = 1; i > 0; i++)
+	{
+		cout << "Enter your marks : ";
+		cin >> marks;
+		calculateGrade(marks, grade);
+		cout << "Your grade is " << grade << endl;
+		cout << "Press -1 to quit";
+		cin >> op;
+		if (op == -1)
+		{
+			break;
+		}
+		else
+		{
+			continue;
+		}
+	}
+	system("pause");
+	return 0;
+}
+void calculateGrade(int marks, char& grade)
+{
+	if (marks > 80)
+	{
+		grade = 'A';
+	}
+	else if (marks > 65 && marks < 80)
+	{
+		grade = 'B';
+	}
+	else if (marks > 50 && marks < 65)
+	{
+		grade = 'C';
+	}
+	else if (marks < 50)
+	{
+		grade = 'F';
+	}
+}
+
+
+QUESTION # 3#include<iostream>
+using namespace std;
+void resverse_Array(int a[], int size);
+int main()
+{
+	int a[10];
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "Enter value no. " << i + 1 << " : ";
+		cin >> a[i];
+	}
+	resverse_Array(a, 10);
+	system("pause");
+	return 0;
+}
+void resverse_Array(int a[], int size)
+{
+	int n, temp;
+	n = size - 1;
+	for (int i = 0; i < n; i++, n--)
+	{
+		temp = a[i];
+		a[i] = a[n];
+		a[n] = temp;
+	}
+	for (int j = 0; j < 10; j++)
+	{
+		cout << a[j];
+	}
+}

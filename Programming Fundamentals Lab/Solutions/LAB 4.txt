@@ -1,0 +1,167 @@
+Task#1
+
+a)   Hello/nProgrammers
+     HellProgrammers
+
+b)  #include<iostream>
+     using namespace std;
+     int main()
+     { 
+      cout<<""?\";
+      system("pause"};
+      return 0;
+      }
+
+Task#2
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+	int a, b;
+	char c;
+	float d,e;
+	cout << "Enter first number=";
+	cin >> a;
+	cout << "Enter second number=";
+	cin >> b;
+	cout << "Enter any operator=";
+	cin >> c;
+	if ((int)c == 43)
+	{
+		d = a + b;
+		cout << "Sum=" << d << endl;
+	}
+	else if ((int)c == 45)
+	{
+		d = a - b;
+		cout << "Difference=" << d << endl;
+	}
+	else if ((int)c == 42)
+	{
+		d = a*b;
+		cout << "Product" << d << endl;
+	}
+	else if ((int)c == 47)
+	{
+		d = a / b;
+		cout << "Division=" << d << endl;
+	}
+	else if ((int)c == 37)
+	{
+		d = a%b;
+		cout << "Modulus=" << d << endl;
+	}
+	else if ((int)c == 80)
+	{
+		d = pow(a, b);
+		cout << "Power=" << d << endl;
+	}
+	else if((int)c == 83)
+	{
+		d = sqrt(a);
+		e = sqrt(b);
+		cout << "Square root of first number" << d << endl;
+		cout << "Square root of second number" << e << endl;
+	}
+	system("pause");
+	return 0;
+}
+
+
+Task#3
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "Enter your marks";
+	cin >> a;
+	if (a <= 100 && a >= 90)
+	{
+		cout << "Your grade is A+" << endl;
+	}
+	else if (a <= 89 && a >= 80)
+	{
+		cout << "Your grade is A" << endl;
+	}
+	else if (a <= 79 && a >= 70)
+	{
+		cout << "Your grade is B" << endl;
+	}
+	else if (a <= 69 && a >=60 )
+	{
+		cout << "Your grade is C" << endl;
+	}
+	else if (a <= 59 && a >= 50)
+	{
+		cout << "Your grade is D" << endl;
+	}
+	else if (a <= 49 && a >= 00)
+	{
+		cout << "Your grade is F" << endl;
+	system("pause");
+	return 0;
+}
+
+Task#4
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	char a;
+	int b;
+	b = (int)a;
+	cout << "Enter any character";
+	cin >> a;
+	if ((int)b <= 90 && (int)b >= 65)
+	{
+		cout << "Character is capital" << endl;
+	}
+	else if ((int)b <= 122 && (int)b >= 97)
+	{
+		cout << "Character is small letter" << endl;
+	}
+	else if (b <= 9 && b >= 0)
+	{
+		cout << "Character is digit" << endl;
+	}
+	else if ((int)b <= 47 && (int)b >= 33 || (int)b <= 64 && (int)b >= 58)
+	{
+		cout << "Character is special charater" << endl;
+	}
+		system("pause");
+		return 0;
+	}
+
+Task#5
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int a, b, c;
+	float d;
+	c = a / b;
+	d = a / b;
+	cout << "Answer without type casting" << c << endl;
+	cout << "Answer with type casting" << d << endl;
+	system("pause");
+	return 0;
+}
+
+Task#6
+
+a)x=3,y=2
+b)x=3,y=3
+c)x=3,y=3
+d)x=3,y=4
+e)It is true
+f)It is true

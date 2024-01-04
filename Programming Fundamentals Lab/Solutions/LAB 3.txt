@@ -1,0 +1,145 @@
+///  LAB # 3  ///
+
+
+Question#1
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	cout << "Abdullah Tahir";
+	system ("pause");
+	return 0;
+}
+
+Question#2
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int length, breadth, area;
+	cout << "please enter length of regtangular=";
+	cin >> length;
+	cout << "please enter breadth of regtangular=";
+	cin >> breadth ;
+	area = length*breadth;
+	cout << "area of regtangular is= " << area<<endl;
+	system("pause");
+	return 0;
+}
+
+Question#3
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	float Base, Height, Area;
+	cout << "please enter base of triangle=";
+	cin >> Base;
+	cout << "please enter height of triangle=";
+	cin >> Height;
+	Area = 0.5*Base*Height;
+	cout << "Area of triangle is="<< Area<<endl;
+	system("pause");
+	return 0;
+}
+
+Question#4
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a, b, c, d,Sum, Product ;
+	double  Average;
+	cout << "Enter four numbers"<<endl;
+	cout << "enter number a=";
+	cin >> a;
+	cout << "enter number b=";
+	cin >> b;
+	cout << "enter number c=";
+	cin >> c;
+	cout << "enter number d=";
+	cin >> d;
+	Sum= a + b + c + d;
+	Product = a*b*c*d;
+	Average = (a + b + c + d) / 4;
+	cout << "Sum of numbers is=" << Sum<<endl;
+	cout << "Product of numbers is=" << Product<<endl;
+	cout << "Average of numbers is=" << Average<<endl;
+	system("pause");
+	return 0;
+}
+
+Question#5
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	char A;
+	cout << "enter any chacrter";
+	cin >> "char";
+	cout << "ASCII value of char is=";
+	cout << (int)"char";
+	system("pause");
+	return 0;
+}
+
+Question#6
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a,b,c,d;
+	cout << "enter a three digit number";
+	cin >> a;
+	int b = a / 100;
+	int c = (a % 100) / 10;
+	int d = (a % 100) % 10;
+	cout << "enter it in reverse order";
+    cout << d << c << b;
+	system("pause");
+	return 0;
+}
+
+Question#7
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a, b,c;
+	cout << "Enter first integer";
+	cin >> a;
+	cout << "Enter second integer";
+	cin >> b;
+	c = a;
+	a = b;
+	b = c;
+	cout << "First integer is" << a;
+	cout << "Second integer is " << b;
+	system("pause");
+	return 0;
+}
+Bonus Task
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a, b;
+	cout << "Enter first integer";
+	cin >> a;
+	cout << "Enter second integer";
+	cin >> b;
+	cout << "First integer is" << a;
+	cout << "Second integer is " << b;
+	system("pause");
+	return 0;
+}

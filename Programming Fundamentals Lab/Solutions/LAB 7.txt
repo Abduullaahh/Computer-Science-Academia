@@ -1,0 +1,102 @@
+ ///      LAB # 7 ///
+
+
+
+
+
+QUESTION#1
+
+#include<iostream>
+using namespace std;
+int main()
+{
+     int n, num, dig, rev = 0;
+     cout << "Enter a number: ";
+     cin >> num;
+     n = num;
+     for( int i = num; i > 0;)
+     {
+         dig = num % 10;
+         rev = (rev * 10) + dig;
+         num = num / 10;
+     }
+     cout << " The reverse of the number is: " << rev << endl;
+     if (n == rev)
+         {
+             cout << " The number is a palindrome.";
+         }
+     else
+         {
+             cout << " The number is not a palindrome.";
+         }
+	system("pause");
+	return 0;
+}
+
+QUESTION#2
+
+a)
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	for(int i=0;i<=7;i++)
+	{
+		for(int i=0;i<=7;i++)
+	    {
+		cout<<"*";
+	    }
+	        cout<<endl;
+	}
+	
+	return 0;
+}
+
+b)
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	for(int i=0;i<=5;i++)
+	{
+		cout<<"*";
+	}
+	cout<<endl;
+	for(int i=1;i<=4;i++)
+	{
+		for(int i=1;i==1;i++)
+	{
+		cout<<"*\t\b\b\b*";
+	}
+	cout<<endl;
+	}
+	for(int i=0;i<=5;i++)
+	{
+		cout<<"*";
+	}
+	cout<<endl;
+	return 0;
+}
+
+QUESTION#3
+
+#include<iostream>
+using namespace std;
+int main() {
+	cout << "Enter value of\n";
+	int num, i, num1 = 0,num2 = 1, pre = 1;
+	cin >> num;
+
+	for (i = 1;i <= num; i++) 
+        {
+		cout << pre << "  ";
+		pre = num1 + num2;
+	
+		num1 = num2;
+		num2 = pre;
+
+	}
+        return 0;
+}

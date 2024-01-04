@@ -1,0 +1,223 @@
+     ///   LAB # 10   ///
+
+
+
+
+
+QUESTION # 1
+
+#include<iostream>
+using namespace std;
+int AscDesNone(int a[], int size, char s)
+{
+	int min, max, temp;
+	for (int i = 0; i < size; i++)
+	{
+		if (s == 'A')
+		{
+			for (int j = 0; j < size; j++)
+			{
+				min = a[j];
+				for (int m = 0; m < sizes; m++)
+				{
+					if (a[m] > a[m - 1])
+					{
+						temp = a[i];
+						a[i] = a[m];
+						a[m] = temp;
+					}
+				}
+			}
+		}
+		else if (s == 'D')
+		{
+			temp = 0;
+			for (int j = 0; j < size; j++)
+			{
+				max = a[j];
+				for (int m = 0; m < size; m++)
+				{
+					if (a[j] < a[m])
+					{
+						temp = a[i];
+						a[i] = a[m];
+						a[m] = temp;
+					}
+				}
+			}
+		}
+		else if (s == 'N')
+		{
+
+		}
+	}
+	return a[5];
+}
+int main()
+{
+	int m, a[5];
+	char s;
+	for (int i = 0; i < 5; i++)
+	{
+		cin >> a[i];
+	}
+	cin >> s;
+	AscDesNone(a, 5, s);
+	for (int i = 0; i < 5; i++)
+	{
+		cout << a[i];
+	}
+	cout << endl;
+	system("pause");
+	return 0;
+
+}
+
+QUESTION # 2
+
+
+#include<iostream>
+using namespace std;
+int frequency(char a[], int s)
+{
+	int count = 0;
+	char n;
+	cout << "\nEnter the character : ";
+	cin >> n;
+	for (int i = 0; i < s; i++)
+	{
+		if (a[i] == n)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+int main()
+{
+	int f;
+	char a[100];
+	cout << "Enter array : ";
+	cin.get(a, 100);
+	for (int i = 0; a[i] != '\0'; i++)
+	{
+		cout << a[i];
+	}
+	f = frequency(a, 100);
+	cout << "Frequency of character is : " << f << endl;
+	system("pause");
+	return 0;
+
+}
+
+QUESTION # 3
+
+#include<iostream>
+using namespace std;
+char FilteredString(char a[], int s)
+{
+	for (int i = 0; i < s; i++)
+	{
+		if (a[i] > 'A' || a[i] < 'Z' || a[i]> 'a' || a[i] < 'z')
+		{
+			a[i] == a[i+1];
+		}
+		for (int i = 0; i != '\0'; i++)
+		{
+			cout << a[i];
+			
+		}
+	}
+	return a[s];
+}
+int main()
+{
+	char a[100];
+	cout << "Enter array : ";
+	cin.get(a, 100);
+	FilteredString(a, 100);
+	cout << "New array is : \n";
+	
+	system("pause");
+	return 0;
+
+}
+
+
+QUESTION # 4
+
+#include<iostream>
+using namespace std;
+void tweakletter(int a[], int size)
+{
+	char updatedword[6];
+	char word[6];
+	cout << "Enter the word" << endl;
+	cin.get(word, 6);
+	for (int i = 0;i < size;i++)
+	{
+		cout << "Enter the number only 1 or -1" << endl;
+		cin >> a[i];
+	}
+
+
+	for (int i = 0;i < size;i++)
+	{
+		updatedword[i] = word[i] + a[i];
+	}
+	for (int i = 0;i < size;i++)
+	{
+		cout << updatedword[i];
+	}
+
+}
+
+QUESTION # 5
+
+#include<iostream>
+using namespace std;
+void toCamelCase(char a[], int s)
+{
+	for (int i = 0; i < s; i++)
+	{
+		if (a[i] == '_')
+		{
+			a[i] = a[i + 1];
+		}
+	}
+}
+void toSnakeCase(char a[], int s)
+{
+	char temp;
+	for (int i = 0; i < s; i++)
+	{
+		if (a[i]<'Z'&&a[i]>'A')
+		{
+			temp = a[i];
+			a[i + 1] = a[i];
+			a[i] = '_';
+		}
+	}
+}
+int main()
+{
+	char a[100];
+	cout << "Enter array : ";
+	cin.get(a, 100);
+	for (int i = 0; a[i] != '\0'; i++)
+	{
+		cout << a[i];
+	}
+	for (int i = 0; a[i] != '\0'; i++)
+	{
+		if (a[i] == '_')
+			toCamelCase(a, 100);
+	}
+	for (int i = 0; a[i] != '\0'; i++)
+	{
+		if (a[i] != '_')
+			toSnakeCase(a, 100);
+	}
+	system("pause");
+	return 0;
+}

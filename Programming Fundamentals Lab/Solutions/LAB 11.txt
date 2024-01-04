@@ -1,0 +1,286 @@
+/// LAB-11 ///
+QUESTION # 1
+#include<iostream>
+using namespace std;
+void Identity(int a[][3]);
+int main()
+{
+int a[3][3];
+cout << "Enter a 3 by 3 Matrix : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cin >> a[i][j];
+}
+}
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << a[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+Identity(a);
+system("pause");
+return 0;
+}
+void Identity(int a[][3])
+{
+int chk1 = 0, chk2 = 0;
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+if (i == j)
+{
+if (i == j && a[i][j] == 1)
+{
+continue;
+}
+else
+{
+chk1++;
+}
+}
+else
+{
+if (i != j && a[i][j] == 0)
+{
+continue;
+}
+else
+{
+chk2++;
+}
+}
+}
+}
+if (chk1 == 0 && chk2 == 0)
+{
+cout << "Matrix is identity\n";
+}
+else
+{
+cout << "Matrix is not identity\n";
+}
+}
+QUESTION # 2
+#include<iostream>
+using namespace std;
+void Add(int a[][3], int b[][3]);
+void Subt(int a[][3], int b[][3]);
+int main()
+{
+int a[3][3], b[3][3];
+cout << "Enter a 3 by 3 Matrix : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cin >> a[i][j];
+}
+}
+cout << "Enter a 3 by 3 Matrix : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cin >> b[i][j];
+}
+}
+cout << "Matrix 1 is : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << a[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+cout << "Matrix 2 is : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << b[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+Add(a, b);
+Subt(a, b);
+system("pause");
+return 0;
+}
+void Add(int a[][3], int b[][3])
+{
+cout << "Sum of Matries\n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << a[i][j] + b[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+}
+void Subt(int a[][3], int b[][3])
+{
+cout << "Subtraction of Matries\n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << a[i][j] - b[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+}
+QUESTION # 3
+#include<iostream>
+using namespace std;
+void UpperHalf(int a[][3]);
+int main()
+{
+int a[3][3];
+cout << "Enter a 3 by 3 Matrix : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cin >> a[i][j];
+}
+}
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << a[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+UpperHalf(a);
+system("pause");
+return 0;
+}
+void UpperHalf(int a[][3])
+{
+int sp = 0;
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+if (i == 0)
+{
+cout << a[i][j];
+}
+if (i > 0)
+{
+if (i > 0 && j >= i)
+{
+cout << a[i][j];
+}
+else
+{
+cout << " ";
+}
+}
+}
+cout << endl;
+}
+}
+QUESTION # 4
+#include<iostream>
+using namespace std;
+void MidColRow(int a[][3], int size);
+int main()
+{
+int a[3][3], b[3][3], size = 3;
+cout << "Enter a Matrix : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cin >> a[i][j];
+}
+}
+cout << "Matrix is : \n";
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+cout << a[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+MidColRow(a, size);
+system("pause");
+return 0;
+}
+void MidColRow(int a[][3], int size)
+{
+int test; test = size / 2;
+cout << "The middle row is: ";
+for (int i = test; i == test; i++)
+{
+for (int j = 0; j < 3; j++) 
+{
+cout << " " << a[i][j];
+}
+cout << endl << endl;
+}
+cout << "The middle column is: " << endl;
+for (int i = 0; i <3; i++) 
+{
+for (int j = test; j == test; j++) 
+{
+cout << " " << a[i][j];
+}
+cout << endl;
+}
+}
+QUESTION # 5
+#include<iostream>
+using namespace std;
+void Transpose(int a[][3], int& n, int& m);
+int main()
+{
+int a[3][3], n, m;
+cout << "Enter number of rows : ";
+cin >> n;
+cout << "Enter number of columns : ";
+cin >> m;
+cout << "Enter a Matrix : \n";
+for (int i = 0; i < n; i++)
+{
+for (int j = 0; j < m; j++)
+{
+cin >> a[i][j];
+}
+}
+cout << "Matrix is : \n";
+for (int i = 0; i < n; i++)
+{
+for (int j = 0; j < m; j++)
+{
+cout << a[i][j] << "\t";
+}
+cout << endl << endl << endl;
+}
+Transpose(a, n, m);
+system("pause");
+return 0;
+}
+void Transpose(int a[][3], int& n, int& m)
+{
+cout << "Transpose of matrix is : \n";
+for (int i = 0; i < n; i++)
+{
+for (int j = 0; j < m; j++)
+{
+cout << a[j][i] << "\t";
+}
+cout << endl << endl << endl;
+}
+}
