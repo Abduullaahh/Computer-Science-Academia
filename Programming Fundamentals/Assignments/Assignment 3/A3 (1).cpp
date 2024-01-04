@@ -1,11 +1,3 @@
-//------------------------------------------------------------------------------------
-// PF-Assignment # 4
-// Super-anagrams / Imperfect palindrome
-// Name : Abdullah Tahir
-// Roll no : 21L-5419
-// Section : J
-// Mail : l215419@lhr.nu.edu.pk
-//------------------------------------------------------------------------------------
 #include<iostream>
 #include<fstream>
 using namespace std;
