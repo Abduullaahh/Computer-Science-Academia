@@ -1,0 +1,121 @@
+#include<iostream>
+using namespace std;
+template <typename T>
+class Stack
+{
+private:
+	T* arr;
+	int maxsize;
+	int stkptr;
+public:
+	Stack(int s = 10)
+	{
+		arr = new T[s];
+		maxsize = s;
+		stkptr = 0;
+	}
+	bool isFull()
+	{
+		return (stkptr == maxsize);
+	}
+	int size()
+	{
+		return stkptr;
+	}
+	bool isEmpty()
+	{
+		return (stkptr == 0);
+	}
+	bool push(T d)
+	{
+		if (stkptr < maxsize)
+		{
+			arr[stkptr] = d;
+			stkptr++;
+			return true;
+		}
+		return false;
+	}
+	bool top(T& d)
+	{
+		if (!isEmpty())
+		{
+			d = arr[stkptr - 1];
+			return true;
+		}
+		return false;
+	}
+	void pop(T& d)
+	{
+		if (!isEmpty())
+		{
+			d = arr[--stkptr];
+		}
+	}
+	void print()
+	{
+		cout << "Data : ";
+		for (int i = 0; i < 10; i++)
+		{
+			cout << arr[i] << "\t";
+		}
+		cout << endl;
+	}
+	bool isBalanced(char* s)
+	{
+		Stack<char>S(strlen(s));
+		char ch = ' ';
+		for (int i = 0; s[i] != '\0'; i++)
+		{
+			if (s[i] == '[' || s[i] == '{' || s[i] == '(')
+			{
+				S.push(s[i]);
+			}
+			if (s[i] == ')')
+			{
+				if (!S.isEmpty() && push(ch))
+				{
+					if (ch != ')')
+					{
+						return false;
+					}
+				}
+			}
+		}
+	}
+};
+
+int main()
+{
+	int data[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	Stack<int> S(10);
+	if (S.isEmpty())
+	{
+		cout << "Stack is Empty\n";
+	}
+	else
+	{
+		cout << "Stack is not Empty\n";
+	}
+	if (S.isFull())
+	{
+		cout << "Stack is Full\n";
+	}
+	else
+	{
+		cout << "Stack is not Full\n";
+	}
+	cout << "Size is : " << S.size() << endl;
+	S.push(data[0]);
+	S.push(data[1]);
+	S.push(data[2]);
+	S.push(data[3]);
+	S.push(data[4]);
+	S.push(data[5]);
+	S.push(data[6]);
+	S.push(data[7]);
+	S.push(data[8]);
+	S.push(data[9]);
+	system("pause");
+	return 0;
+}

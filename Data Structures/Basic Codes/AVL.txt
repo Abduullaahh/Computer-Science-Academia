@@ -1,0 +1,359 @@
+#include <iostream>
+using namespace std;
+
+int max(int x, int y)
+{
+	if (x > y)
+	{
+		return x;
+	}
+	return y;
+}
+
+template<class T>
+class AVL
+{
+private:
+	class Node 
+	{
+	public:
+		T value;
+		Node* left;
+		Node* right;
+		int height;
+		Node() {
+			height = 0;
+		}
+	};
+	Node* root;
+	void printInorder(Node* r) 
+	{
+		if (r == nullptr)
+			return;
+		printInorder(r->l);
+		cout << r->val << endl;
+		printInorder(r->r);
+	}
+	void printPreorder(Node* r)
+	{
+		if (r == nullptr)
+			return;
+		cout << r->val << endl;
+		printPreorder(r->l);
+		printPreorder(r->r);
+	}
+	void printPostorder(Node* r)
+	{
+		if (r == nullptr)
+			return;
+		printPostorder(r->l);
+		printPostorder(r->r);
+		cout << r->val << endl;
+	}
+	bool isAvl(Node* r)
+	{
+		if (r == nullptr)
+			return true;
+		int factor = getHeight(r->l) - getHeight(r->r);
+		if (abs(factor) <= 1)
+			return true;
+		return false;
+	}
+	int getHeight(Node* r)
+	{
+		if (r == nullptr)
+			return -1;
+		return r->height;
+	}
+	void Delete(Node*& r, T val)
+	{
+		if (r->val == val) {
+			if (r->l == nullptr && r->r == nullptr) {
+				Node* tmp = r;
+				r = nullptr;
+				delete tmp;
+			}
+			else if (r->l == nullptr) {
+				Node* tmp = r;
+				r = r->r;
+				delete tmp;
+			}
+			else if (r->r == nullptr) {
+				Node* tmp = r;
+				r = r->l;
+				delete tmp;
+			}
+			else {
+				Node* k = r->l;
+				Node* prev = nullptr;
+				while (k->r != nullptr) {
+					prev = k;
+					k = k->r;
+				}
+				if (prev == nullptr) {
+					r->l = nullptr;
+					r->val = k->val;
+					delete k;
+				}
+				else {
+					r->val = k->val;
+					prev->r = nullptr;
+					delete k;
+				}
+			}
+			return;
+		}
+		else if (val > r->val) {
+			Delete(r->r, val);
+		}
+		else if (val < r->val) {
+			Delete(r->l, val);
+		}
+		r->height = 1 + max(getHeight(r->l), getHeight(r->r));
+		int factor = getBalance(r);
+		if (factor < -1) {
+			int k = getBalance(r->r);
+			if (k <= -1) {
+				rotateL(r);
+			}
+			else {
+				rotateR(r->r);
+				rotateL(r);
+			}
+		}
+		else if (factor > 1) {
+			int k = getBalance(r->l);
+			if (k >= 1) {
+				rotateR(r);
+			}
+			else {
+				rotateL(r->l);
+				rotateR(r);
+			}
+		}
+	}
+	inline int getBalance(Node* r) 
+	{
+		int factor = getHeight(r->l) - getHeight(r->r);
+		return factor;
+	}
+	void rotateL(Node*& r)
+	{
+		Node* t = r->r;
+		r->r = t->l;
+		t->l = r;
+		Node* prevR = r;
+		r = t;
+		prevR->height = 1 + max(getHeight(prevR->l), getHeight(prevR->r));
+		r->height = 1 + max(getHeight(r->l), getHeight(r->r));
+	}
+	void rotateR(Node*& r) 
+	{
+		Node* t = r->l;
+		r->l = t->r;
+		t->r = r;
+		Node* prevR = r;
+		r = t;
+		prevR->height = 1 + max(getHeight(prevR->l), getHeight(prevR->r));
+		r->height = 1 + max(getHeight(r->l), getHeight(r->r));
+	}
+	void balance(Node*& r, T val)
+	{
+		int factor = getHeight(r->l) - getHeight(r->r);
+		if (factor < -1) {
+			if (val < r->r->val) {
+				rotateR(r->r);
+				rotateL(r);
+			}
+			else if (val > r->r->val) {
+				rotateL(r);
+			}
+		}
+		else if (factor > 1) {
+			if (val < r->l->val) {
+				rotateR(r);
+			}
+			else if (val > r->l->val) {
+				rotateL(r->l);
+				rotateR(r);
+			}
+		}
+	}
+	bool insert(Node*& r, T d)
+	{
+		if (r == nullptr) {
+			r = new Node;
+			r->val = d;
+			r->l = nullptr;
+			r->r = nullptr;
+			return true;
+		}
+		else {
+			if (d < r->val) {
+				bool b = insert(r->l, d);
+				if (b) {
+					r->height = 1 + max(getHeight(r->l), getHeight(r->r));
+					balance(r, d);
+				}
+				return b;
+			}
+			else if (d > r->val) {
+				bool b = insert(r->r, d);
+				if (b) {
+					r->height = 1 + max(getHeight(r->l), getHeight(r->r));
+					balance(r, d);
+				}
+				return b;
+			}
+		}
+		return false;
+	}
+	Node* search(Node* r, T d) 
+	{
+		if (r == nullptr) {
+			return nullptr;
+		}
+		if (r->val == d) {
+			return r;
+		}
+		if (d > r->val) {
+			return search(r->r, d);
+		}
+		else if (d < r->val) {
+			return search(r->l, d);
+		}
+		return nullptr;
+	}
+	T findMin(Node* r)
+	{
+		if (r == nullptr) {
+			throw std::logic_error("Tree is empty!");
+		}
+		if (r->l == nullptr) {
+			return r->val;
+		}
+		return findMin(r->l);
+	}
+	T findSecMin(Node* r)
+	{
+		if (r == nullptr) {
+			throw std::logic_error("Tree is empty!");
+		}
+		if (r->l == nullptr) {
+			return r->val;
+		}
+		if (r->l->l == nullptr) {
+			return r->val;
+		}
+		return findSecMin(r->l);
+	}
+public:
+	AVL()
+	{
+		root = nullptr;
+	}
+	bool insert(T d)
+	{
+		return insert(root, d);
+	}
+	bool isAvl()
+	{
+		return isAvl(root);
+	}
+	bool search(T d)
+	{
+		if (search(root, d))
+		{
+			return true;
+		}
+		return false;
+	}
+	void freeNode(Node* r)
+	{
+		if (r == nullptr)
+		{
+			return;
+		}
+		freeNode(r->l);
+		freeNode(r->r);
+		delete r;
+	}
+	void printInorder()
+	{
+		printInorder(root);
+	}
+	void printPreOrder()
+	{
+		printPreorder(root);
+	}
+	void printPostOrder()
+	{
+		printPostorder(root);
+	}
+	void printTabular()
+	{
+		printTabular(root);
+	}
+	void Delete(T val)
+	{
+		if (root != nullptr)
+			Delete(root, val);
+	}
+	T Min()
+	{
+		return findMin(root);
+	}
+	T secondMin()
+	{
+		return findSecMin(root);
+	}
+	~AVL()
+	{
+		freeNode(root);
+	}
+};
+int main()
+{
+	AVL<int> t; int num, value;
+	cout << "Enter the number of inputs: ";
+	cin >> num;
+	for (int i = 0; i < num; i++)
+	{
+		cout << "Enter value: ";
+		cin >> value;
+		t.insert(value);
+	}
+	if (t.isAvl())
+	{
+		cout << "Tree is AVL." << endl;
+	}
+	cout << "Minimum is: " << t.Min() << endl;
+	cout << "Second Minimum is: " << t.secondMin() << endl;
+	cout << "Enter the value you want to search: "; cin >> num;
+	if (t.search(num)) {
+		cout << "Number exists.\n";
+	}
+	else {
+		cout << "Number does not exist.\n";
+	}
+	cout << "In order printing:\n";
+	t.printInorder();
+	cout << "Post order printing:\n";
+	t.printPostOrder();
+	cout << "Pre order printing:\n";
+	t.printPreOrder();
+	cout << "Enter the number you want to delete: ";
+	cin >> num;
+	if (t.search(num)) {
+		t.Delete(num);
+		cout << "'" << num << "' is deleted.\n";
+	}
+	else {
+		cout << "'" << num << "' cannot be deleted as it does not exist.\n";
+	}
+	t.printInorder();
+	if (t.isAvl()) {
+		cout << "Tree is AVL." << endl;
+	}
+	system("pause");
+}

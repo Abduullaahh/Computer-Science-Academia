@@ -1,0 +1,126 @@
+#include<iostream>
+using namespace std;
+
+template<class T>
+class List
+{
+private:
+	class Node
+	{
+	public:
+		T data;
+		Node* next;
+		Node* prev;
+	};
+	Node* head;
+	Node* tail;
+public:
+	List()
+	{
+		head = new Node;
+		tail = new Node;
+		head -> next = tail;
+		head -> prev = NULL;
+		tail -> next = NULL;
+		tail -> prev = head;
+	}
+
+	void insertAtHead(T const element)
+	{
+		Node* temp = new Node;
+		temp -> data = element;
+		temp -> prev = head;
+		temp -> next = head -> next;
+		head -> next -> prev = temp;
+		head -> next = temp;
+	}
+
+	void insertAtTail (T const element)
+	{	
+		Node* temp = new Node;
+		temp -> data = element;
+		temp -> next = tail;
+		temp -> prev = tail -> prev;
+		tail -> prev -> next = temp;
+		tail -> prev = temp;
+	}
+
+	void print() const
+	{
+		Node* curr = head;
+		cout << "Data : ";
+		cout << head -> data;
+		while (curr != NULL)
+		{
+			cout << curr -> data << ", ";
+			curr = curr -> next;
+		}
+		cout << endl;
+	}
+
+	void printrev() const
+	{
+		Node* curr = head;
+		int count = 0;
+		while (curr != NULL)
+		{
+			count++;
+			curr = curr -> next;
+		}
+		int ind = 1; curr = head;
+		cout << "Data : ";
+		while (ind <= count)
+		{
+			if (ind == count)
+			{
+				cout << curr -> data << ", ";
+				ind = 1;
+				count -= 1;
+				curr = head;
+			}
+			else
+			{
+				ind++;
+			    curr = curr->next;
+			}
+		}
+		cout << endl;
+	}
+
+	void deleteAtStart ()
+	{
+		Node* temp = head -> next;
+		head -> next -> prev = head;
+		head -> next = temp -> next;
+		delete temp;
+	}
+
+	void deleteAtTail()
+	{
+		Node* temp = tail -> prev;
+		tail -> prev -> next = tail;
+		tail -> prev = temp -> prev;
+		delete temp;
+	}
+};
+
+int main()
+{
+	List<int>object;
+	object.insertAtHead(4);
+	object.insertAtHead(7);
+	object.insertAtHead(9);
+	object.insertAtHead(6);
+	object.insertAtTail(3);
+	object.insertAtTail(7);
+	object.insertAtTail(1);
+	object.print();
+	cout << "Reverse order ";
+	object.printrev();
+	object.deleteAtStart();
+	object.deleteAtTail();
+	cout << "After delation ";
+	object.print();
+	system("pause");
+	return 0;
+}

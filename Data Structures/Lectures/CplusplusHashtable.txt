@@ -1,0 +1,41 @@
+#include <hash_map>
+#include <string>
+#include <iostream>
+#define _DEFINE_DEPRECATED_HASH_CLASSES 0
+
+using namespace std;
+using namespace stdext;
+typedef pair<int, string> Int_Val;
+
+int main()
+{
+	//hash_map<string, int> hm1;
+	//string hello = "hello";
+
+	//hm1[hello] = 1;
+	//hm1["bye"] = 2;
+	//if (hm1["Bye"]==2)
+	//	cout << "YEY!" << endl;
+	//
+	//cout << hm1["bye"]<<endl;
+
+	//hm1["hi"] = 23;
+	//cout << hm1["hi"] << endl;
+
+	hash_map<int, string> hm;
+	hash_map <int, string> :: iterator hm_Iter;
+	hm.insert(Int_Val(1, "ABC"));
+	hm.insert(Int_Val(2, "DEF"));
+	hm.insert(Int_Val(4, "JKL"));
+	hm.insert(Int_Val(3, "GHI"));
+
+	cout<<hm[3]<<endl;
+	hm_Iter=hm.begin();
+	hm.erase(hm_Iter);
+
+	if(hm[1].empty())
+	   cout<<"Nothing for key 1"<<endl;
+
+	cout<<hm.size()<<endl;
+	return 0;
+}

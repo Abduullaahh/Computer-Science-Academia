@@ -1,0 +1,186 @@
+#include<iostream>
+using namespace std;
+
+template <typename T>
+class Queue
+{
+	int size;
+	T* arr;
+	int maxsize;
+	int front;
+	int rear;
+public:
+	Queue(int s = 0)
+	{
+		arr = new int[s];
+		maxsize = s;
+		front = -1;
+		rear = 0;
+		size = 0;
+	}
+	bool enqueue(T d)
+	{
+		if (!isFull())
+		{
+			arr[rear % maxsize] = d;
+			rear++;
+			size++;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	bool dequeue(T d)
+	{
+		if (!isEmpty())
+		{
+			front++;
+			size--;
+			d = arr[front % maxsize];
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	bool isFull()
+	{
+		if (size == maxsize)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	int Size()
+	{
+		return size;
+	}
+	bool isEmpty()
+	{
+		if (size == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	int Front()
+	{
+		return arr[0];
+	}
+	int Rear()
+	{
+		return arr[size - 1];
+	}
+	void print()
+	{
+		cout << "Queue :\t";
+		for (int i = 0; i < size; i++)
+		{
+			cout << arr[i] << "\t";
+		}
+		cout << endl;
+	}
+	void alternativeQueue()
+	{
+		int* temp1;
+		int* temp2;
+		if (size % 2 == 0)
+		{
+			temp1 = new int[size / 2];
+			temp2 = new int[size / 2];
+			for (int i = 0, j = 0; i < size;)
+			{
+				if (i < size / 2)
+				{
+					temp1[i] = arr[i]; i++;
+				}
+				else
+				{
+					temp2[j] = arr[i];
+					i++; j++;
+				}
+			}
+		}
+		else
+		{
+			temp1 = new int[(size / 2) + 1];
+			temp2 = new int[size / 2];
+			for (int i = 0, j = 0; i < size;)
+			{
+				if (i < (size / 2) + 1)
+				{
+					temp1[i] = arr[i]; i++;
+				}
+				else
+				{
+					temp2[j] = arr[i];
+					i++;
+					j++;
+				}
+			}
+		}
+		for (int i = 0; i < (size / 2) + 1; i++)
+		{
+			cout << temp1[i];
+		}
+		cout << endl;
+		for (int i = 0; i < size / 2; i++)
+		{
+			cout << temp2[i];
+		}
+		cout << endl;
+		for (int i = 0, j = 0, k = 0; i < size;)
+		{
+			if (i % 2 != 0)
+			{
+				this->arr[i] = temp1[j]; i++; j++;
+			}
+			else
+			{
+				this->arr[i] = temp2[k]; i++; k++;
+			}
+		}
+	}
+};
+
+int main()
+{
+	Queue<int> Q(9);
+	if (Q.isEmpty())
+	{
+		cout << "Queue is Empty\n";
+	}
+	else
+	{
+		cout << "Queue is not Empty\n";
+	}
+	if (Q.isFull())
+	{
+		cout << "Queue is Full\n";
+	}
+	else
+	{
+		cout << "Queue is not Full\n";
+	}
+	cout << "enqueue() called\n";
+	Q.enqueue(1);
+	Q.enqueue(2);
+	Q.enqueue(3);
+	Q.enqueue(4);
+	Q.enqueue(5);
+	Q.enqueue(6);
+	Q.enqueue(7);
+	Q.enqueue(8);
+	Q.enqueue(9);
+	Q.print();
+	return 0;
+}

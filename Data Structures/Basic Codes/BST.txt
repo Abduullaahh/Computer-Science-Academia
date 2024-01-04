@@ -1,0 +1,115 @@
+#include<iostream>
+using namespace std;
+template<class T>
+class BST
+{
+private:
+    class Node
+    {
+    public:
+        T data;
+        Node* left;
+        Node* right;
+    };
+
+    Node* root;
+    Node* trash;
+
+public:
+    BST()
+    {
+        root = nullptr;
+        trash = new Node;
+    }
+
+    Node* Get_root()
+    {
+        return root;
+    }
+
+    bool insert(T d)
+    {
+        bool chk = insert(root, d);
+        if (trash->data < d)
+        {
+            trash->data = d;
+        }
+        return chk;
+    }
+
+    bool insert(Node* r, int d)
+    {
+        if (r == nullptr)
+        {
+            r = new Node;
+            r->data = d;
+            r->left = r->right = nullptr;
+        }
+        else
+        {
+            if (d < r->data)
+            {
+                insert(r->left, d);
+            }
+            else if (d > r->data)
+            {
+                insert(r->right, d);
+            }
+        }
+        cout << r->data << endl;
+        return 1;
+    }
+
+    void print()
+    {
+        out(root);
+    }
+
+    void Minimum()
+    {
+        cout << "Minimum: ";
+        cout << "1" << endl;
+    }
+
+    bool out(Node*& r)
+    {
+        if (r == NULL)
+        {
+            cout << "Empty\n";
+        }
+        else if (out(r->right))
+        {
+            cout << r->data << endl;
+            return false;
+        }
+        else
+        {
+            out(r->left);
+            cout << r->data << endl;
+            return true;
+        }
+    }
+
+    void Maximum()
+    {
+        cout << "Maximum: ";
+        cout << trash->data << endl;
+    }
+};
+
+int main()
+{
+    BST<int>tree;
+
+    tree.insert(500);
+    tree.insert(1000);
+    tree.insert(1);
+
+    tree.insert(10);
+    tree.insert(30);
+    tree.insert(9000);
+    tree.insert(500000);
+
+    tree.print();
+    return 0;
+}
