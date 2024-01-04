@@ -1,0 +1,360 @@
+Question # 1
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Employee
+{
+private:
+	string name;
+	int empID;
+public:
+	Employee();
+	Employee(string, int);
+};
+
+Employee::Employee()
+{
+	name = " ";
+	empID = 0;
+}
+
+Employee::Employee(string N, int ID)
+{
+	name = N;
+	empID = ID;
+}
+
+class HourlyEmployee :public Employee
+{
+private:
+	double hourlyIncome;
+public:
+	HourlyEmployee();
+	HourlyEmployee(string N, int ID, double In);
+	void calculate_the_hourly_income();
+};
+
+HourlyEmployee::HourlyEmployee()
+{
+	hourlyIncome = 0;
+}
+
+HourlyEmployee::HourlyEmployee(string N, int ID, double In) :Employee(N, ID)
+{
+	cout << "Employee Name : " << N << endl;
+	cout << "Employee ID : " << ID << endl;
+	hourlyIncome = In;
+}
+
+void HourlyEmployee::calculate_the_hourly_income()
+{
+	cout << "Hourly Employee\n";
+	int hours;
+	cout << "Enter number of hours : ";
+	cin >> hours;
+	hourlyIncome = hours * 150;
+	cout << "Your income is : " << hourlyIncome << endl;
+}
+
+class PermanentEmployee :public Employee
+{
+private:
+	double hourlyIncome;
+public:
+	PermanentEmployee();
+	PermanentEmployee(string N, int ID, double In);
+	void calculate_the_income();
+};
+
+PermanentEmployee::PermanentEmployee()
+{
+	hourlyIncome = 0;
+}
+
+PermanentEmployee::PermanentEmployee(string N, int ID, double In) :Employee(N, ID)
+{
+	cout << "Employee Name : " << N << endl;
+	cout << "Employee ID : " << ID << endl;
+	hourlyIncome = In;
+}
+
+void PermanentEmployee::calculate_the_income()
+{
+	cout << "Permanent Employee\n";
+	hourlyIncome = 240 * 150;
+	cout << "Your income is : " << hourlyIncome << endl;
+}
+
+int main()
+{
+	Employee E();
+	Employee E1("Abdullah", 5419);
+	HourlyEmployee H();
+	HourlyEmployee H1("Abdullah", 5419, 0);
+	H1.calculate_the_hourly_income();
+	PermanentEmployee P();
+	PermanentEmployee P1("Abdullah", 5419, 0);
+	P1.calculate_the_income();
+	system("pause");
+	return 0;
+}
+Question # 2
+
+#include<iostream>
+using namespace std;
+class Bankaccount
+{
+	int accountid;
+	int balance;
+public:
+	Bankaccount(int a, int c)
+	{
+		accountid = a;
+		balance = c;
+	}
+
+	int balanceinquiry2()
+	{
+		return balance;
+	}
+};
+class Currentaccount : public Bankaccount
+{
+public:
+	Currentaccount(int f, int g) :Bankaccount(f, g)
+	{
+
+	}
+	void amountWithdrawn(int a)
+	{
+
+		int b = balanceinquiry2();
+		int f = 0;
+		f = b - a;
+		if (f < 5000)
+		{
+			cout << "\nNOT WITHDRAWED\n";
+		}
+		else
+		{
+
+			cout << "\nYour Balance:\n" << f;
+		}
+	}
+	void Despositamount(int d)
+	{
+		int l = 0;
+		l = balanceinquiry2() + d;
+		cout << "\n YOUR NEW AMOUNT \n" << l;
+	}
+
+
+};
+class Savingaccount :public Bankaccount
+{
+public:
+	Savingaccount(int x, int y) : Bankaccount(x, y)
+	{
+
+	}
+	void amountWithdrawn(int a)
+	{
+
+		int b = balanceinquiry2();
+		int f = 0;
+		f = b - a;
+		if (f < 10000)
+		{
+			cout << "\nNOT WITHDRAWED\n";
+		}
+		else
+		{
+
+			cout << "\nYour Balance:\n" << f;
+		}
+	}
+	void Despositamount(int d)
+	{
+		int l = 0;
+		l = balanceinquiry2() + d;
+		cout << "\n YOUR NEW AMOUNT \n" << l;
+	}
+};
+int main()
+{
+	int i, b;
+	cout << "\nEnter id\n";
+	cin >> i;
+	cout << "\nEnter Balance\n";
+	cin >> b;
+	Bankaccount o1(i, b);
+	cout << "\nCurrent account\n";
+
+	int x, y;
+	Currentaccount o2(i, b);
+	cout << "\nEnter WITHDRAW amount\n";
+	cin >> x;
+	cout << "\nEnter dePOSIT aMOUNT\n";
+	cin >> y;
+	o2.amountWithdrawn(x);
+	o2.Despositamount(y);
+	cout << "\nSaving Account\n";
+
+	int f, g;
+
+	cout << "\nEnter WITHDRAW amount\n";
+	cin >> f;
+	cout << "\nEnter dePOSIT aMOUNT\n";
+	cin >> g;
+	o2.amountWithdrawn(f);
+	o2.Despositamount(g);
+	system("pause");
+	return 0;
+
+}
+
+
+Question # 3
+
+#include<iostream>
+#include<string>
+using namespace std;
+class person
+{
+private:
+	string name;
+	int year_of_birth;
+public:
+	person(string n, int y)
+	{
+		name = n;
+		year_of_birth = y;
+	}
+	void getter(string z, int &q)
+	{
+		z = name;
+		q = year_of_birth;
+	}
+};
+class student :public person
+{
+private:
+	int stuid;
+	int ensems;
+public:
+	student(int m, int n, string o, int q) :person(o, q)
+	{
+		stuid = m;
+		ensems = n;
+	}
+	void display()
+	{
+		cout << "student id:" << stuid << endl;
+		cout << "enrolled semester" << ensems << endl;
+		int s; string q;
+		getter(q, s);
+		cout << "name:" << q << endl;
+		cout << "year of birth:" << s << endl;
+	}
+};
+class employee
+{
+protected:
+	int employeeid;
+	int joiningyear;
+	string jobtitle;
+	int courseid;
+	string coursetitle;
+public:
+	employee(int eid, int jye, string jbtit, int cid, string crtit)
+	{
+
+		{
+			employeeid = eid;
+			joiningyear = jye;
+			jobtitle = jbtit;
+			courseid = cid;
+			coursetitle = crtit;
+		}
+	}
+
+};
+class administration :public employee
+{
+public:
+	administration(int eid1, int jye1, string jbtit1, int cid1, string crtit1) :employee(eid1, jye1, jbtit1, 0, crtit1)
+	{
+
+	}
+	void setter(string q)
+	{
+		jobtitle = q;
+	}
+	string getter()
+	{
+		return jobtitle;
+	}
+};
+class academic :public employee
+{
+public:
+	academic(int eid11, int jye11, string jbtit11, int cid11, string crtit11) :employee(0, 0, jbtit11, cid11, crtit11)
+	{
+
+	}
+	void setcoursetitle(string h)
+	{
+		coursetitle = h;
+	}
+	void setcourseid(int x)
+	{
+		courseid = x;
+	}
+};
+class deanhod :public employee
+{
+public:
+	deanhod(int eid111, int jye111, string jbtit111, int cid111, string crtit111) :employee(jye111, jye111, jbtit111, cid111, crtit111)
+	{
+
+	}
+	void changer()
+	{
+		cout << "enetr new id\n";
+		int y;
+		cin >> y;
+		employeeid = y;
+		cout << "enter new designationof employee\n";
+		string d;
+		cin >> d;
+		jobtitle = d;
+		cout << "particular course\n";
+		string nc;
+		cin >> nc;
+		coursetitle = nc;
+	}
+};
+int main()
+{
+	string v;
+	int q = 0;
+	person p("Abdullah", 2002);
+	p.getter(v, q);
+	cout << "Getter\nname= " << v << "year of birth" << q;
+	student s(45, 3, "Abdullah", 2002);
+	cout << endl;
+	cout << "Student data displayed\n";
+	s.display();
+	administration a(5419, 2022, "Admin", 4577, "OOP");
+	string qw;
+	qw = a.getter();
+	cout << endl;
+	cout << "Getter of administration" << qw;
+	academic a1(5419, 2022, "Admin", 4577, "OOP");
+	deanhod d(5419, 2022, "Admin", 4577, "OOP");
+	d.changer();
+	system("pause");
+	return 0;
+}

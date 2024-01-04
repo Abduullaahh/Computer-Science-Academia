@@ -1,0 +1,357 @@
+TASK # 1
+
+A)
+
+#include<iostream>
+using namespace std;
+template <typename T>
+T range(T** array, int rows, int columns)
+{
+	T maxValue = array[0][0];
+	T minValue = array[0][0];
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			if (array[i][j] > maxValue)
+				maxValue = array[i][j];
+			if (array[i][j] < minValue)
+				minValue = array[i][j];
+		}
+	}
+	//cout<<"MIN :"<<minValue<<"\nMAX :"<<maxValue<<"\n";
+	T result = ((maxValue - minValue) / 4) + minValue;
+	return result;
+}
+int main()
+{
+	int** arr = new int* [4];
+	for (int i = 0; i < 4; i++)
+		arr[i] = new int[4];
+	// make int array
+	int c = 0;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			arr[i][j] = c++;
+	//make char array
+	char count = 'A';
+	char** arr1 = new char* [3];
+	for (int i = 0; i < 3; i++)
+		arr1[i] = new char[3];
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
+			arr1[i][j] = count++;
+	cout << "Result of int array : " << range(arr, 4, 4);
+	cout << "\nResult of char array : " << range(arr1, 3, 3);
+}
+output:
+Result of int array : 3
+Result of char array : C
+
+B)
+
+#include<iostream>
+using namespace std;
+template <typename T>
+void shift(T**& array, int rows, int columns)
+{
+	T* temp = new T[rows];
+	for (int i = 0; i < rows; i++)
+		temp[i] = array[i][columns - 1];
+	for (int i = columns - 1; i > 0; i--)
+	{
+		for (int j = 0; j < rows; j++)
+		{
+			array[j][i] = array[j][i - 1];
+		}
+	}
+	for (int i = 0; i < rows; i++)
+		array[i][0] = temp[i];
+}
+int main()
+{
+	int** arr = new int* [4];
+	for (int i = 0; i < 4; i++)
+		arr[i] = new int[4];
+	// make int array
+	int c = 0;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			arr[i][j] = c++;
+	shift(arr, 4, 4);
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			cout << arr[i][j] << " ";
+		}
+		cout << "\n";
+	}
+}
+
+TASK # 2
+
+#include<iostream>
+
+using namespace std;
+
+template<class T>
+class myIncrement
+{
+    T num;
+public:
+    myIncrement(T a)
+    {
+        num = a;
+    }
+
+    T toIncremented()
+    {
+        num = num + 1;
+        return num;
+    }
+
+    T uppercase()
+    {
+        if (num >= 'a' || num <= 'z')
+        {
+            num += 'A' - 'a';
+        }
+        return num;
+    }
+};
+
+
+int main()
+{
+    myIncrement<int> myint(7);
+
+    myIncrement<char> mychar('s');
+
+    myIncrement<double> mydouble(11.0);
+
+    cout << "Incremented int value: " << myint.toIncremented() << endl;
+
+    cout << "Uppercase value: " << mychar.toIncremented() << endl;
+
+    cout << "Incremented double value: " << mydouble.toIncremented() << endl;
+
+    return 0;
+}
+
+TASK # 3
+
+#include <iostream>
+
+#include <string>
+
+#include <exception>
+
+ 
+
+//Use namespace
+
+using namespace std;
+
+ 
+
+//Define class
+
+class tornadoException
+
+{
+
+     //Define access modifier
+
+     public:
+
+ 
+
+     //Define constructor
+
+     tornadoException()
+
+     {
+
+          //Define message
+
+          message = " Tornado: take cover immediately";
+
+     }
+
+ 
+
+     //Define constructor
+
+     tornadoException(int m)
+
+     {
+
+          // Define message
+
+message = "tornado is: " + to_string(m) + " miles away\n";
+
+     }
+
+ 
+
+     //Define method
+
+     string what()
+
+     {
+
+          //Return
+
+          return message;
+
+     }
+
+ 
+
+     //Define access specifier
+
+     private:
+
+ 
+
+     //Declare variable
+
+     string message;
+
+};
+
+ 
+
+//Define main
+
+int main()
+
+{
+
+     //Declare variable
+
+     int miles;
+
+ 
+
+     //Try
+
+     try
+
+     {
+
+          //Define message
+
+          cout<< "Enter miles: ";
+
+ 
+
+          //Store value
+
+          cin >> miles;
+
+ 
+
+          //Newline
+
+          cout << endl;
+
+ 
+
+          //If value is less than or equals 0
+
+          if(miles <= 0)
+
+          {
+
+              //Throw exception
+
+              throw tornadoException();
+
+          }
+
+ 
+
+          //Otherwise
+
+          else
+
+          {
+
+              //Throw exception
+
+              throw tornadoException(miles);
+
+          }
+
+     }
+
+ 
+
+     //Define catch
+
+     catch(tornadoException ex)
+
+     {
+
+          //Define message
+
+cout << "In TornadoException "<< endl << ex.what()<<endl;
+
+     }
+
+ 
+
+     //Pause console window
+
+     system("pause");
+
+ 
+
+     //Return
+
+     return 0;
+
+}
+
+TASK # 4
+
+#include <iostream>
+using namespace std;
+
+//sequence template class
+
+template <class T, int N>
+class Sequence {
+    T memblock[N];
+public:
+    void setmember(int x, T value);
+    T getmember(int x);
+};
+
+//method to set sequence member
+template <class T, int N>
+void Sequence<T, N>::setmember(int x, T value) {
+    memblock[x] = value;
+}
+
+//method to get sequence member
+template <class T, int N>
+T Sequence<T, N>::getmember(int x) {
+    return memblock[x];
+}
+
+//main method
+int main() {
+    //sequence int
+    Sequence <int, 5> myints;
+
+    //sequence float
+    Sequence <double, 5> myfloats;
+    myints.setmember(0, 100);
+    myfloats.setmember(3, 3.1416);
+    //print int sequence
+    cout << myints.getmember(0) << '\n';
+    //print float sequence
+    cout << myfloats.getmember(3) << '\n';
+    return 0;
+}

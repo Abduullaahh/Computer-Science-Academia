@@ -1,0 +1,359 @@
+QUESTION # 1
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Person
+{
+private:
+	string fullName;
+	int height;
+public:
+	Person(string name, int Height)
+	{
+		fullName = name;
+		height = Height;
+	}
+	virtual void printInfo()
+	{
+		cout << "Name : " << fullName << endl;
+		cout << "Height : " << height << endl;
+	}
+	~Person()
+	{
+		cout << "Person destructor" << endl;
+	}
+};
+class Employee : public Person
+{
+private:
+	string departement;
+	int ID;
+public:
+	Employee(string name, int height, string Departement, int id) :Person(name, height)
+	{
+		departement = Departement;
+		ID = id;
+	}
+	void printInfo()
+	{
+		cout << "Departement name : " << departement << endl;
+		cout << "ID : " << ID << endl;
+	}
+	~Employee()
+	{
+		cout << "Employee destructor" << endl;
+	}
+};
+class Student : public Person
+{
+private:
+	string schoolName;
+public:
+	Student(string name, int height, string SchoolName) : Person(name, height)
+	{
+		schoolName = SchoolName;
+	}
+	void printInfo()
+	{
+		cout << "School name : " << schoolName << endl;
+	}
+	~Student()
+	{
+		cout << "Student destructor" << endl;
+	}
+};
+
+int main()
+{
+	Employee E("Abdullah", 6, "BS-CS", 5419);
+	Student S("Abdullah", 6, "FAST-NUCES");
+	Person P("Abdullah", 6);
+	P.printInfo();
+	E.printInfo();
+	S.printInfo();
+	E.~Employee();
+	S.~Student();
+	system("pause");
+	return 0;
+}
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+Name : Abdullah
+Height : 6
+Departement name : BS-CS
+ID : 5419
+School name : FAST-NUCES
+Employee destructor
+Person destructor
+Student destructor
+Person destructor
+
+---------------------------------------------------------------------------------------------------------------
+
+QUESTION # 2
+
+class Animal
+{
+private:
+
+public:
+	/*virtual*/ string speak()
+	{
+		return "speak() called";
+	}
+};
+
+class Dog :public Animal
+{
+private:
+	
+public:
+	string speak()
+	{
+		return "woof!";
+	}
+};
+
+int main()
+{
+	Animal objAnimal;
+	Dog objDog;
+	Animal *ptrAnimal = &objAnimal;
+	Dog *ptrDog = &objDog;
+	cout << objAnimal.speak() << endl;
+	cout << objDog.speak() << endl;
+	cout << ptrAnimal->speak() << endl;
+	cout << ptrDog->speak() << endl;
+	system("pause");
+	return 0;
+}
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+speak() called
+woof!
+speak() called
+woof!
+---------------------------------------------------------------------------------------------------------------
+Modify the last line of your program to use the syntax above, execute it and paste the output in the box below.
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+speak() called
+woof!
+speak() called
+speak() called
+---------------------------------------------------------------------------------------------------------------
+Now we will see what happens if we change this. Change the main function so that ptrAnimal is pointing to the
+ object of Dog, execute your program and paste the output below
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+speak() called
+woof!
+speak() called
+speak() called
+---------------------------------------------------------------------------------------------------------------
+Now modify the code so that ptrDog points to objAnimal and compile your program. It will not compile successfully.
+Paste the error in the space below. What does this show?
+---------------------------------------------------------------------------------------------------------------
+EROR : A value of type Animal cannot point to a value of type Dog
+---------------------------------------------------------------------------------------------------------------
+Change the main function of your program and replace it with the code below. Execute it and paste the output in
+the box below.
+
+Dog lassie;
+	Animal *myPet = &lassie;
+	cout << myPet->speak() << endl;
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+Before : speak() called
+After : woof!
+---------------------------------------------------------------------------------------------------------------
+In the above exercises, we have seen a very simple implementation of Polymorphism. The real power of this feature
+ is realized when we have a collection of objects of multiple derived classes and we use a pointer of the base 
+class to call their respective overloaded methods. A Cat is an animal too. Let’s see how we can use an array of 
+base class pointers to utilize the essence of polymorphism. 
+
+>Define a class Cat. Inherit publicly from Animal just like we did in class Dog.
+>Overload the speak() method so that it returns “mew!”. 
+>Modify the main function as shown below.
+>Compile, execute and paste the output in the space given below.
+ 
+	const int size = 2;
+	Animal * myPets[size];
+	Cat whiskers;
+	Dog mutley;
+ 
+	myPets[0] = &whiskers;
+	myPets[1] = &mutley;
+ 
+	for(int i=0; i<size; i++)
+		cout << myPets[i]->speak() << endl;
+
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+mew!
+woof!
+---------------------------------------------------------------------------------------------------------------
+Modify the main function so that the size of array myPets is 5. Display a menu to the user asking him the type 
+of pet for each of the 5 pets. For each input, create the object of the respective class dynamically and point
+ to it by the corresponding pointer of the array myPets. Once you have taken all 5 inputs, use a loop to call 
+the speak() method and delete each of the objects. You can use the following code to take the input.  The 
+declaration of getch() is in the header file conio.h.
+
+ 
+int i = 0;
+while (i<size)
+{
+	cout << "Press 1 for a Dog and 2 for a Cat." << endl ;
+	switch (getch())
+	{
+		case '1':
+			myPets[i] = new Dog;
+			cout << "Dog added at position "<< i <<endl<<endl;
+			i++;
+			break;
+		case '2':
+			myPets[i] = new Cat;
+			cout << "Cat added at position "<< i <<endl<<endl;
+			i++;
+			break;
+		default:
+			cout<<"Invalid input. Enter again." <<endl<<endl;
+			break;
+	}		
+}
+
+---------------------------------------------------------------------------------------------------------------
+Output : 
+
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 0
+
+Press 1 for a Dog and 2 for a Cat.
+Cat added at position 1
+
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 2
+
+Press 1 for a Dog and 2 for a Cat.
+Invalid input. Enter again.
+
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 3
+
+Press 1 for a Dog and 2 for a Cat.
+Invalid input. Enter again.
+
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 4
+---------------------------------------------------------------------------------------------------------------
+Although things seem to be fine on the surface, there is a problem in the program we just wrote. To observe this
+ problem, we must add destructors for all classes. Paste the following inline definitions of the destructors in 
+their corresponding classes, execute the program and paste the output below.
+
+ 
+~Animal()  { cout << "~Animal() called."<<endl;	}
+ 
+
+ 
+~Cat() 	{ cout << "~Cat() called."<<endl; }
+ 
+
+ 
+~Dog() 	{ cout << "~Dog() called."<<endl; }
+ 
+
+---------------------------------------------------------------------------------------------------------------
+Output :
+
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 0
+
+~Animal() called.
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 1
+
+~Animal() called.
+Press 1 for a Dog and 2 for a Cat.
+Cat added at position 2
+
+~Animal() called.
+Press 1 for a Dog and 2 for a Cat.
+Cat added at position 3
+
+~Animal() called.
+Press 1 for a Dog and 2 for a Cat.
+Dog added at position 4
+
+~Animal() called.
+---------------------------------------------------------------------------------------------------------------
+
+Question # 7
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Person
+{
+protected:
+	string PersonName = "Abdullah";
+	int PersonAge = 19;
+public:
+	virtual void Print()
+	{
+		cout << "Name : " << PersonName << endl;
+		cout << "Age : " << PersonAge << endl;
+	}
+};
+class Patient : public Person
+{
+protected:
+	string DiseaseType = "Flu";
+	string RecommendedMedicine = "Fexet-D";
+public:
+	
+	void Print()
+	{
+		cout << "Disease Type : " << DiseaseType << endl;
+		cout << "Recommended Medicine : " << RecommendedMedicine << endl;
+	}
+};
+class MedicarePatient : public Patient
+{
+private:
+	string NameOfHospital, NameOfWard;
+	int RoomNumber;
+public:
+	MedicarePatient(string Hospital, string Ward, int Room) 
+	{
+		NameOfHospital = Hospital;
+		NameOfWard = Ward;
+		RoomNumber = Room;
+	}
+	void Print()
+	{
+		cout << "Name : " << PersonName << endl;
+		cout << "Age : " << PersonAge << endl;
+		cout << "Name Of Hospital : " << NameOfHospital << endl;
+		cout << "Name Of Ward : " << NameOfWard << endl;
+		cout << "Number Of Room : " << RoomNumber << endl;
+		cout << "Disease Type : " << DiseaseType << endl;
+		cout << "Recommended Medicine : " << RecommendedMedicine << endl;
+	}
+};
+
+int main()
+{
+	MedicarePatient MP("Hameed Lateef", "Emergency Ward", 4);
+	MP.Print();
+	system("pause");
+	return 0;
+}

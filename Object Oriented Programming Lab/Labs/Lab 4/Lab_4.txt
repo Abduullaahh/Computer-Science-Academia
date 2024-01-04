@@ -1,0 +1,337 @@
+QUESTION # 1
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+void LoadMatrix(char** matrix, const int rows, const int cols);
+void DisplayMatrix(char** matrix, const int& rows, const int& cols);
+char** removeFromMatrix(char** matrix, const char cols, char** matrix2, const int rows);
+void DeallocateMemory(char** matrix, const int& rows);
+
+int main()
+{
+	int rows, cols;
+	char** matrix, ** matrix2;
+	cout << "Enter number of rows :";
+	cin >> rows;
+	cout << "Enter number of cols :";
+	cin >> cols;
+	matrix = new char* [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		matrix[i] = new char[cols];
+	}
+	matrix2 = new char* [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		matrix2[i] = new char[cols];
+	}
+
+	LoadMatrix(matrix, rows, cols);
+	DisplayMatrix(matrix, rows, cols);
+	removeFromMatrix(matrix, cols, matrix2, rows);
+	DeallocateMemory(matrix, rows);
+	system("pause");
+	return 0;
+}
+
+void LoadMatrix(char** matrix, const int rows, const int cols)
+{
+	fstream File;
+	char** matrix1;
+	matrix1 = new char* [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		matrix1[i] = new char[cols];
+	}
+	File.open("file.txt", ios::out);
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cin >> matrix1[i][j];
+			File << matrix1[i][j];
+		}
+	}
+	File.close();
+	cout << "Data written in file\n";
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cout << matrix1[i][j] << "\t";
+		}
+		cout << endl;
+	}
+	File.open("file.txt", ios::in);
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			File >> matrix[i][j];
+		}
+	}
+	File.close();
+}
+
+void DisplayMatrix(char** matrix, const int& rows, const int& cols)
+{
+	cout << "Data read from file\n";
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cout << matrix[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+
+char** removeFromMatrix(char** matrix, const char cols, char** matrix2, const int rows)
+{
+	char remove;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			matrix2[i][j] = matrix[i][j];
+		}
+	}
+	cout << "Enter the character : ";
+	cin >> remove;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			int n, m;
+			n = i;
+			m = j;
+			if (matrix2[i][j] == remove)
+			{
+				for (int k = 0; k < cols; k++)
+				{
+					matrix2[n][k] = ' ';
+				}
+				for (int k = 0; k < cols; k++)
+				{
+					matrix2[k][m] = ' ';
+				}
+			}
+		}
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cout << matrix2[i][j] << "\t";
+		}
+		cout << endl;
+	}
+	
+	char **newmatrix;
+	newmatrix = new char* [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		newmatrix[i] = new char[cols];
+	}
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (matrix2[i][j]!=' ')
+			{
+				newmatrix[i][j] = '-';
+			}
+			else
+			{
+				newmatrix[i][j] = matrix2[i][j];
+			}
+		}
+	}
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cout << newmatrix[i][j] << "\t";
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
+void DeallocateMemory(char** matrix, const int& rows)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		delete[]matrix[i];
+	}
+	delete []matrix;
+}
+
+//---------------------------------------------------------------------------------------------------------------
+
+QUESTION # 2
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Student
+{
+public:
+
+	string RollNo;
+	string CNIC;
+	char Name[50];
+	char Degree[50];
+	char Address[200];
+
+	void input()
+	{
+		cout << "Enter your Roll no : ";
+		cin >> RollNo;
+		cout << "Enter your CNIC : ";
+		cin >> CNIC; 
+		cout << "Enter your Name : ";
+		cin.ignore();
+		cin.getline(Name, 50);
+		cout << "Enter your Degree : ";
+		cin.getline(Degree, 50);
+		cout << "Enter your Address : ";
+		cin.getline(Address, 50);
+	}
+	void print()
+	{
+		cout << endl;
+		cout << "Your Roll no is : " << RollNo << endl;
+		cout << "Your Name : " << Name << endl;
+		cout << "Your CNIC : " << CNIC << endl;
+		cout << "Your Degree : " << Degree << endl;
+		cout << "Your Address : " << Address << endl;
+	}
+};
+
+int main()
+{
+	Student data;
+	data.input();
+	data.print();
+	system("pause");
+	return 0;
+}
+
+//---------------------------------------------------------------------------------------------------------------
+
+QUESTION # 3
+
+#include<iostream>
+using namespace std;
+
+class Date
+{
+private:
+	int Day, Month, Year;
+public:
+	void DefaultConstructor()
+	{
+		Day = 1;
+		Month = 1;
+		Year = 1926;
+	}
+	void Print()
+	{
+		cout << "Default Constructor Called\n" << "Date is :" << Day << "/" << Month << "/" << Year << endl;
+	}
+	int Input()
+	{
+		int chk = 0;
+		for (int i = 0; i == 0;)
+		{
+			cout << "Enter Day :";
+			cin >> Day;
+			if (Day <= 0 || Day >31)
+			{
+				cout << "Invalid input :(\n";
+				chk++;
+				continue;
+			}
+			cout << "Enter Month :";
+			cin >> Month;
+			if (Month <= 0 || Month >12)
+			{
+				cout << "Invalid input :(\n";
+				chk++;
+				continue;
+			}
+			cout << "Enter Year :";
+			cin >> Year;
+			break;
+		}
+		return chk;
+	}
+	void SetDay(int &day)
+	{
+		cout << "Enter Day :";
+		cin >> day;
+		while (day <= 0 || day >12)
+		{
+			cout << "Invalid input :(\n";
+			cin >> day;
+		}
+	}
+	void SetMonth(int &month)
+	{
+		cout << "Enter Month :";
+		cin >> month;
+		while (month <= 0 || month >12)
+		{
+			cout << "Invalid input :(\n";
+			cin >> month;
+		}
+	}
+	void SetYear(int &year)
+	{
+		cout << "Enter Year :";
+		cin >> year;
+	}
+	void GetDay(int &day)
+	{
+		cout << endl << day;
+	}
+	void GetMonth(int &month)
+	{
+		cout << "/" << month;
+	}
+	void GetYear(int &year)
+	{
+		cout << "/" << year;
+	}
+};
+
+int main()
+{
+	int chk = 0, day, month, year;
+	Date date1, xmasDay;
+	date1.DefaultConstructor();
+	date1.Print();
+	chk = date1.Input();
+	if (chk == 0)
+	{
+		date1.Print();
+	}
+	else
+	{
+		cout << "Invalid input :(\n";
+	}
+	xmasDay.SetDay(day);
+	xmasDay.SetMonth(month);
+	xmasDay.SetYear(year);
+	xmasDay.GetDay(day);
+	xmasDay.GetMonth(month);
+	xmasDay.GetYear(year);
+	system("pause");
+	return 0;
+}

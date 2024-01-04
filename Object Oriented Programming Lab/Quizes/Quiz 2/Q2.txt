@@ -1,0 +1,150 @@
+#include<iostream>
+using namespace std;
+
+class SparseMatrix
+{
+private:
+	int rows;
+	int column;
+	int**mat;
+public:
+	SparseMatrix();
+	SparseMatrix(int, int, int**);
+	int operator ++();
+	ostream operator <<(const SparseMatrix& S);
+	~SparseMatrix();
+};
+
+SparseMatrix::SparseMatrix()
+{
+	rows = 0;
+	column = 0;
+	mat = new int*[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		mat[i] = new int[column];
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			mat[i][j] == 0;
+		}
+	}
+}
+
+SparseMatrix::SparseMatrix(int R, int C, int**M)
+{
+	rows = R;
+	column = C;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			mat[i][j] == M[i][j];
+		}
+	}
+}
+
+int SparseMatrix::operator ++()
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			if (mat[i][j] != 0)
+			{
+				mat[i][j]++;
+			}
+		}
+	}
+}
+
+ostream SparseMatrix::operator <<(const SparseMatrix& S)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			cout << mat[i][j] << "\t";
+		}
+		cout << endl << endl;
+	}
+}
+
+SparseMatrix::~SparseMatrix()
+{
+	delete[]mat;
+}
+
+int main()
+{
+	int **Matrix, rows, columns;
+	cout << "Enter No. of rows : ";
+	cin >> rows;
+	cout << "Enter No. of rows : ";
+	cin >> columns;
+	Matrix = new int*[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		Matrix[i] = new int[columns];
+	}
+	cout << "Enter the matrix :-\n";
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			cin >> Matrix[i][j];
+		}
+	}
+	cout << "Matrix is :-\n";
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			cout << Matrix[i][j] << "\t";
+		}
+		cout << endl << endl;
+	}
+	SparseMatrix S();
+	int**CompMatrix;
+	CompMatrix = new int*[rows];
+	int *C;
+	C = new int[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+			{
+				if (Matrix[i][j] != 0)
+				{
+					C[i]++;
+				}
+			}
+		columns = 2 * C[i];
+		CompMatrix[i] = new int[C[i]];
+			break;
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < C[i]; j++)
+		{
+			if (Matrix[i][j] != 0)
+			{
+				CompMatrix[i][j] == Matrix[i][j];
+			}
+		}
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			cout << CompMatrix[i][j] << "\t";
+		}
+		cout << endl << endl;
+	}
+	SparseMatrix S1(rows, columns, Matrix);
+	S1.operator++;
+	S1.operator<<;
+	system("pause");
+	return 0;
+}

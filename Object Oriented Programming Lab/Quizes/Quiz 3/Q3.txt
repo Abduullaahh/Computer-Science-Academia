@@ -1,0 +1,209 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Person
+{
+
+private:
+	string Name;
+	int Age;
+	string Phone_Number;
+	char  Sex;
+	int No_of_appointments_per_day;
+	string Email_id;
+public:
+	Person();
+	void Getter(string, int, string, char, int, string);
+	virtual int Get_Remaining_Appointments();
+	~Person(){}
+};
+
+Person::Person()
+{
+	Name = " ";
+	Age = 0;
+	Phone_Number = "0";
+	Sex = ' ';
+	No_of_appointments_per_day = 0;
+	Email_id = " ";
+}
+
+void Person::Getter(string N, int A, string PN, char S, int AP, string ID)
+{
+	Name = N;
+	Age = A;
+	Phone_Number = PN;
+	Sex = S;
+	No_of_appointments_per_day = AP;
+	Email_id = ID;
+}
+
+int Person::Get_Remaining_Appointments()
+{
+	cout << --No_of_appointments_per_day;
+}
+
+class Doctor_is_a_person :public Person
+{
+
+private:
+	int ID;
+	int **Schedule;
+	Specialization Spe;
+public:
+	Doctor_is_a_person();
+	void GetterD(int, int**);
+	void Show_Schedule();
+	virtual int Get_Remaining_Appointments();
+	friend ostream &operator<<(ostream &out,const Doctor_is_a_person D)
+	{
+		/*cout << "Name : " << Name << endl;
+		cout << "Age : " << Age << endl;
+		cout << "Phone number : " << Phone_Number << endl;
+		cout << "Sex : " << Sex << endl;
+		cout << "No of appointments : " << No_of_appointments_per_day << endl;
+		cout << "Email ID : " << Email_id << endl;*/
+		cout << D;
+	}
+
+	~Doctor_is_a_person(){ delete[]Schedule; }
+};
+
+Doctor_is_a_person::Doctor_is_a_person()
+{
+	ID = 0;
+	Schedule = new int*[6];
+	for (int i = 0; i < 6; i++)
+	{
+		Schedule[i] = new int[12];
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 12; j++)
+		{
+			Schedule[i][j] = 0;
+		}
+	}
+}
+
+void Doctor_is_a_person::GetterD(int Id, int** S)
+{
+	ID = Id;
+	Schedule = new int*[6];
+	for (int i = 0; i < 6; i++)
+	{
+		Schedule[i] = new int[12];
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 12; j++)
+		{
+			Schedule[i][j] = S[i][j];
+		}
+	}
+	string N; int A; string PN; char s; int AP; string ID;
+	Person::Getter(N,  A,  PN,  s,  AP,  ID);
+}
+
+void Doctor_is_a_person::Show_Schedule()
+{
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 12; j++)
+		{
+			cout << Schedule[i][j];
+		}
+	}
+}
+
+int Doctor_is_a_person::Get_Remaining_Appointments()
+{
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 12; j++)
+		{
+			if (Schedule[i][j] == 0)
+			{
+				cout << Schedule[i][j];
+			}
+		}
+	}
+}
+
+class Specialization:public Doctor_is_a_person
+{
+
+private:
+	int ID;
+	string Description;
+public:
+	Specialization(int, string);
+	ostream operator<<(const Specialization D);
+};
+
+Specialization::Specialization(int Id, string D)
+{
+	ID = Id;
+	Description = D;
+}
+
+class Pateints_is_a_person
+{
+
+private:
+	int ID;
+	string Diagnosis;
+	int Appointment_ID;
+public:
+	Pateints_is_a_person(int, string, int);
+	friend ostream &operator<<(ostream &out, const Doctor_is_a_person D)
+	{
+		/*cout << "Name : " << Name << endl;
+		cout << "Age : " << Age << endl;
+		cout << "Phone number : " << Phone_Number << endl;
+		cout << "Sex : " << Sex << endl;
+		cout << "No of appointments : " << No_of_appointments_per_day << endl;
+		cout << "Email ID : " << Email_id << endl;
+		cout << D;*/
+	}
+	~Pateints_is_a_person(){}
+};
+
+Pateints_is_a_person::Pateints_is_a_person(int Id, string D, int Ap_ID)
+{
+	ID = Id;
+	Diagnosis = D;
+	Appointment_ID = Ap_ID;
+}
+
+int main()
+{
+	Doctor_is_a_person *D = new Doctor_is_a_person[5];
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Doctor " << i + 1 << endl << D[i] << endl;
+	}
+	int n;
+	cout << "Enter which doctor you want to appoint : ";
+	cin >> n;
+	D[n].Show_Schedule();
+	string N; int A; string PN; char S; int AP; string ID;
+	Person P();
+	Person P1;
+	cout << "Enter Name : ";
+	cin >> N;
+	cout << "Enter Age : ";
+	cin >> A;
+	cout << "Enter Phone Number : ";
+	cin >> PN;
+	cout << "Enter Sex : ";
+	cin >> S;
+	cout << "Enter Appointment ID : ";
+	cin >> AP;
+	cout << "Enter Email ID : ";
+	cin >> ID;
+	P1.Getter(N, A, PN, S, AP, ID);
+	system("pause");
+	return 0;
+}

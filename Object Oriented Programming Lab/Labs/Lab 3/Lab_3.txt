@@ -1,0 +1,267 @@
+QUESTION # 1
+
+#include<iostream>
+using namespace std;
+
+int Input(int *a, int* b, int* c, int size);
+int Intersection(int *a, int* b, int* c, int size);
+int Output(int **Intersect, int size);
+
+int main()
+{
+	int *a, *b, *c, size;
+	cout << "Enter the size of sets : ";
+	cin >> size;
+	a = new int[size];
+	b = new int[size];
+	c = new int[size];
+	Input(a, b, c, size);
+	Intersection(a, b, c, size);
+	system("pause");
+	return 0;
+}
+
+int Input(int *a, int* b, int* c, int size)
+{
+	cout << "Enter first array of size " << size << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cin >> a[i];
+	}
+	cout << "Enter second array of size " << size << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cin >> b[i];
+	}
+	cout << "Enter third array of size " << size << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cin >> c[i];
+	}
+	return 0;
+}
+int Intersection(int *a, int* b, int* c, int size)
+{
+	int**Intersect;
+	Intersect = new int*[3];
+	for (int i = 0; i < 3; i++)
+	{
+		Intersect[i] = new int[size];
+	}
+	int x = 0, y = 0, z = 0;
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (a[i] == b[j])
+			{
+				Intersect[0][i] = a[i];
+				x++;
+			}
+		}
+	}
+	Intersect[0][x] = '\0';
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (c[i] == b[j])
+			{
+				Intersect[1][i] = c[i];
+				y++;
+			}
+		}
+	}
+	Intersect[1][y] = '\0';
+	for (int i = 0; i < size; i++)
+	{ 
+		for (int j = 0; j < size; j++)
+		{
+			if (a[i] == c[j])
+			{
+				Intersect[2][i] = a[i];
+				z++;
+			}
+		}
+	}
+	Intersect[2][z] = '\0';
+	Output(Intersect, size);
+	return 0;
+}
+int Output(int **Intersect, int size)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			cout << Intersect[i][j] << "\t";
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
+QUESTION # 2
+
+#include<iostream>
+using namespace std;
+
+int strcopy(char * str1, char* str2, int size);
+int strcmp(char *s1, char *s2);
+char* strconcatenate(char* str1, char* str2, int size);
+
+int main()
+{
+	char *str1, *str2;
+	int size;
+	cout << "Enter size of string : ";
+	cin >> size;
+	str1 = new char[size];
+	str2 = new char[size];
+	cout << "Enter first string : ";
+	cin >> str1;
+	cout << "Enter second string : ";
+	cin >> str2;
+	int x = 0;
+	x = strcopy(str1, str2, size);
+	if (x == 1)
+	{
+		cout << "Length Not Equal";
+	}
+	else if (x == 0)
+	{
+		cout << "Length Equal";
+	}
+	strconcatenate(str1, str2, size);
+	system("pause");
+	return 0;
+}
+
+int strcopy(char * str1, char* str2, int size)
+{
+	char *s1, *s2;
+	s1 = new char[size];
+	s2 = new char[size];
+	for (int i = 0; str1[i] != '\0' && str2[i] != '\0'; i++)
+	{
+		s1[i] = str1[i];
+		s2[i] = str2[i];
+	}
+	for (int i = 0; i < size; i++)
+	{
+		cout << s1[i];
+	}
+	for (int i = 0; i < size; i++)
+	{
+		cout << s2[i];
+	}
+	return strcmp(s1, s2);
+}
+
+int strcmp(char *s1, char *s2)
+{
+	int chk1 = 0, chk2 = 0;
+	for (int i = 0; s1[i] != '\0'; i++)
+	{
+		chk1++;
+	}
+	for (int i = 0; s1[i] != '\0'; i++)
+	{
+		chk2++;
+	}
+	if (chk2 == chk1)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+char* strconcatenate(char* str1, char* str2, int size)
+{
+	char *strconcat;
+	strconcat = new char[3 * size];
+	int i = 0;
+	for (; str1[i] != '\0'; i++)
+	{
+		strconcat[i] = str1[i];
+	}
+	for (int j = 0; str2[j] != '\0'; j++, i++)
+	{
+		strconcat[i] = str2[j];
+	}
+	for (int j = 0; j < size; j++)
+	{
+		cout << strconcat[j];
+	}
+	return strconcat;
+}
+
+QUESTION # 3
+
+#include<iostream>
+using namespace std;
+
+int IsMatrixUpperTriangular(int **a, int n, int m);
+
+int main()
+{
+	int **a, n, m;
+	cout << "Enter the number of rows : ";
+	cin >> n;
+	cout << "Enter the number of columns (equal to rows) : ";
+	cin >> m;
+	a = new int *[n];
+	for (int i = 0; i < n; i++)
+	{
+		a[i] = new int [m];
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> a[i][j];
+		}
+	}
+	int result = 0;
+	result = IsMatrixUpperTriangular(a, n, m);
+	if (result == 0)
+	{
+		cout << "Not upper triangular";
+	}
+	else if (result == 1)
+	{
+		cout << "Upper triangular";
+	}
+	system("pause");
+	return 0;
+}
+
+int IsMatrixUpperTriangular(int **a, int n, int m)
+{
+	int chk = 0, chk1 = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (j < i)
+			{
+				chk++;
+				if (a[i][j] == 0)
+				{
+					chk1++;
+				}
+			}
+		}
+	}
+	if (chk == chk1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
