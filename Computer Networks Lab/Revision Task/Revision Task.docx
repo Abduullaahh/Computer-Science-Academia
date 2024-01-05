@@ -1,0 +1,6 @@
+Q1: Create a TCL script to define a network topology of your choice with
+at least three nodes, connected using links.
+
+Q2: Create a circular network topology with four routers (R1, R2, R3, and
+R4) connected in a loop. Assign IP addresses to each router interface.
+Implement static routing to ensure communication between all routers.
