@@ -1,0 +1,13 @@
+Newspaper Agency Management System
+
+Consider an information system for a newspaper agency management system.
+The agency distributes newspapers across several neighborhoods. It has
+several salesmen to do the job. A manager assigns one or more neighborhood
+to each salesman.
+
+A customer can subscribe more than one newspapers. Secondly it may ask for
+different newspapers on different days. An invoice is generated at the end
+of each month. If a customer does not pay the bill, his subscription is cancelled.
+
+Now give a class diagram for the aforementioned system. Develop the diagram
+using some UML tool such as Star-UML or Rational Rose. Submit a pdf file
