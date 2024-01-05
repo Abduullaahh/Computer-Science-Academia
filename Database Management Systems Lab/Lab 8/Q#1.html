@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Form</title>
+  <style>
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-container label,
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .form-container input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Lab - 8</h1>
+    <form id="studentForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+      <label for="rollNumber">Roll Number</label>
+      <input type="text" id="rollNumber" name="rollNumber" required>
+      <label for="text">Text</label>
+      <input type="text" id="text" name="text" required>
+      <label for="comment">Comment</label>
+      <textarea id="comment" name="comment" required></textarea>
+      <label for="student">Are you a student?</label>
+      <select id="student" name="student" required>
+        <option value="">-- Select --</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <label for="gender">Gender</label>
+      <input type="radio" id="male" name="gender" value="male" required>
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female" required>
+      <label for="female">Female</label>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("studentForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var name = document.getElementById("name").value;
+      var rollNumber = document.getElementById("rollNumber").value;
+      var text = document.getElementById("text").value;
+      var comment = document.getElementById("comment").value;
+      var student = document.getElementById("student").value;
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+
+      // Do something with the form data
+      console.log("Name: " + name);
+      console.log("Roll Number: " + rollNumber);
+      console.log("Text: " + text);
+      console.log("Comment: " + comment);
+      console.log("Student: " + student);
+      console.log("Gender: " + gender);
+    });
+  </script>
+</body>
+</html>
